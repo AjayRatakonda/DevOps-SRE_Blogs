@@ -1,5 +1,5 @@
 # DevOps-SRE_Blogs
-### **Day1:-**
+# **Day1:-**
 
 **1)How to set up Kubernetes using K3s on an AWS Spot Instance and deploy an Nginx webpage in the Kubernetes cluster?**
 
@@ -135,4 +135,4 @@ kubectl delete -f nginx-service.yaml
 ```
 
 ### **Conclusion**
-You have successfully set up Kubernetes using K3s on an AWS Ubuntu Spot Instance and deployed an Nginx webpage in the Kubernetes cluster.
+Successfully set up Kubernetes using K3s on an AWS Ubuntu Spot Instance and deployed an Nginx webpage in the Kubernetes cluster.
