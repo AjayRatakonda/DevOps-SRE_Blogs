@@ -136,3 +136,120 @@ kubectl delete -f nginx-service.yaml
 
 ### **Conclusion**
 Successfully set up Kubernetes using K3s on an AWS Ubuntu Spot Instance and deployed an Nginx webpage in the Kubernetes cluster.
+
+
+# **Day2:-**
+
+# 1. Introduction to Kubernetes
+
+**1)What is kubernetes?**
+
+  Kubernetes is an open-source container orchestration platform used for automating deployment,    scaling, and management of containerized applications.
+
+**2)Why kubernetes?**
+
+  Kubernetes is needed because it helps manage containerized applications easily. Without Kubernetes, handling multiple containers manually is complex and time-consuming.
+  
+  Simple Example:-
+Imagine we are using an online shopping website running in containers. If traffic increases Kubernetes automatically adds more containers to handle the load. When traffic decreases, it removes extra containers to save resources.
+That’s why Kubernetes is powerful and widely used.
+
+**3)Explain kubernetes Architecture?**
+
+  ### **Kubernetes Architecture**  
+
+Kubernetes follows a **master-worker architecture** where the **Master Node** manages the cluster, and **Worker Nodes** run the applications.  
+
+---
+
+### **Main Components of Kubernetes Architecture**  
+
+### **i) Master Node/Control Plane**  
+The **Master Node/Control Plane** controls and manages the cluster. 
+
+It has 4 main components:  
+
+- **API Server** → It's a central component of k8s, which act as a bridge between the user and the cluster. All components of cluster will communicate with the API Server to perform their actions.
+- **etcd (Cluster Database)** → etcd Stores all Kubernetes data (like cluster state & configurations).    
+- **Scheduler** → Scheduler is component of kubernetes, which is responsible for assigning the pods to worker nodes and to maintain the desired state of the cluster.  
+- **Controller Manager** →  Controller Manager constantly monitors the cluster and makes sure the desired state of the cluster is maintained. (e.g., restarts failed pods).
+
+---
+
+### **ii) Worker Nodes (Where Apps Run)**  
+Worker Nodes **run the actual applications** inside containers. Each Worker Node has:  
+
+- **Kubelet** → Communicates with the master and ensures containers are running properly.  
+- **Kube Proxy** → It assigns dynamic IP to pods. It runs on each node to make sure that each pod will get unique IP.  
+- **Container Runtime (Docker, containerd, CRI-O, etc.)** → Container Runtime responsible for running containers within pods.  
+
+--- 
+
+### **Pod, Node, and Cluster Concepts**
+- **Pod**: The smallest unit in Kubernetes. A pod can contain one or more containers that share resources like storage and network.
+- **Node**: A physical or virtual machine in the Kubernetes cluster that runs the pods.
+- **Cluster**: A set of nodes (master and worker) that run your applications and manage them using Kubernetes.
+
+---
+
+Here’s a simple and easy-to-understand version of the **Kubernetes Objects** section for your GitHub README file:
+
+---
+
+## **Kubernetes Objects**
+
+Kubernetes uses several **objects** to manage applications and resources in the cluster. Here are some of the key objects:
+
+- **Pod**: The smallest unit in Kubernetes. A **pod** can have one or more containers that run your application and share resources like storage and networking.
+
+- **ReplicaSet**: Ensures that the **desired number** of pod replicas are running at all times. It automatically creates or deletes pods to match the specified number.
+
+- **Deployment**: Manages the deployment of applications. It **handles updates, rollbacks**, and scaling of pods in a controlled way.
+
+- **Service**: Exposes your application to the outside world or allows communication between pods inside the cluster. It creates a stable IP address for the pods.
+
+- **Ingress**: Manages **external access** to your applications, typically over HTTP/HTTPS. It helps route traffic to different services based on URL paths or domain names.
+
+- **ConfigMap**: Stores **non-sensitive configuration data** like environment variables, configuration files, or command-line arguments that can be used by pods.
+
+- **Secret**: Stores **sensitive information** like passwords, API keys, and tokens securely. It ensures that this data is encrypted and not exposed in plain text.
+
+- **Namespace**: A way to **group resources logically** within a cluster. It helps organize and isolate resources for different projects or teams.
+
+---
+
+This breakdown should make it clear and simple for anyone reading your README.
+
+### **Services(Expose Apps to the Outside World)**  
+- **ClusterIP** 🏠 → Default, allows communication inside the cluster.  
+- **NodePort** 🚪 → Exposes the app on a specific port of the node.  
+- **LoadBalancer** ⚖️ → Distributes traffic across multiple nodes.  
+
+---
+
+### **Simple Diagram of Kubernetes Architecture**  
+
+```
++-------------------+       +---------------------------+
+|   Master Node    |       |      Worker Nodes        |
+|------------------|       |-------------------------|
+| API Server      |       | Kubelet | Pod | Pod     |
+| Scheduler       |       | Kube Proxy | Pod | Pod  |
+| Controller Mgr  |       | CRI (Docker)            |
+| etcd (Database) |       |-------------------------|
++------------------+       +---------------------------+
+        ⬇                          ⬇
+  Controls & Manages       Runs applications in Pods
+```
+
+---
+
+### **🌟 Summary**
+✅ **Master Node** → Controls everything  
+✅ **Worker Nodes** → Run applications  
+✅ **Pods** → The smallest unit where apps run  
+✅ **Services** → Allow access to applications  
+
+With this simple architecture, **Kubernetes makes sure your applications run smoothly, scale automatically, and recover from failures!** 🚀🔥
+
+  
