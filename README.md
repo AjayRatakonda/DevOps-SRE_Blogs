@@ -51,7 +51,7 @@ Here’s a detailed, step-by-step guide on **how to set up Kubernetes using K3s 
 
 4. Verify K3s installation:
    ```bash
-   kubectl version --short
+   kubectl version
    kubectl get nodes
    ```
 
@@ -88,8 +88,12 @@ Here’s a detailed, step-by-step guide on **how to set up Kubernetes using K3s 
    ```bash
    kubectl apply -f nginx-deployment.yaml
    ```
+   **Example Output**
 
-2. Expose Nginx using a NodePort Service:
+   ![image](https://github.com/user-attachments/assets/07320370-d3e6-49c3-a3a1-1f6fc55a1ea7)
+
+   
+3. Expose Nginx using a NodePort Service:
    Save the YAML as `nginx-service.yaml`:
    ```yaml
    apiVersion: v1
@@ -110,6 +114,9 @@ Here’s a detailed, step-by-step guide on **how to set up Kubernetes using K3s 
    ```bash
    kubectl apply -f nginx-service.yaml
    ```
+   **Example Output**
+
+   ![Screenshot 2025-01-29 173135](https://github.com/user-attachments/assets/9756b846-eda1-476b-b309-d055acec8c08)
 
 ---
 
@@ -120,19 +127,30 @@ Here’s a detailed, step-by-step guide on **how to set up Kubernetes using K3s 
    kubectl get pods
    kubectl get svc
    ```
+   ![Screenshot 2025-01-29 173430](https://github.com/user-attachments/assets/09c4e53c-8570-4e06-ab94-372d08a193a4)
+
 
 2. Now we can access Nginx in browser:
 
    Open the URL `http://<public-ip>:30007` in a web browser. You should see the default Nginx welcome page.
 
+**Example Output:-**
+
+![Screenshot 2025-01-29 173608](https://github.com/user-attachments/assets/bc3ad3d6-8433-491b-8212-f73127c68f6a)
+
 ---
 
-#### **5. Clean Up Resources**
+#### **5. To Delete Resources**
 To delete the Deployment and Service:
 ```bash
 kubectl delete -f nginx-deployment.yaml
 kubectl delete -f nginx-service.yaml
 ```
+**Example Output:-**
+
+![Screenshot 2025-01-29 173936](https://github.com/user-attachments/assets/cccb7139-b37e-4db0-8610-012b6feab099)
+![Screenshot 2025-01-29 173952](https://github.com/user-attachments/assets/336b6759-caf0-485b-8655-2a9c07b6220c)
+
 
 ### **Conclusion**
 Successfully set up Kubernetes using K3s on an AWS Ubuntu Spot Instance and deployed an Nginx webpage in the Kubernetes cluster.
@@ -210,14 +228,75 @@ Kubernetes uses several **objects** to manage applications and resources in the 
 
 - **Secret**: Stores **sensitive information** like passwords, API keys, and tokens securely. It ensures that this data is encrypted and not exposed in plain text.
 
-- **Namespace**: A way to **group resources logically** within a cluster. It helps organize and isolate resources for different projects or teams.
+- **Namespace**: A **Namespace** in Kubernetes is like a **separate workspace** inside a cluster. It helps organize and manage different resources **without mixing them up**.  
+
+For example:  
+- `dev` namespace → for development  
+- `test` namespace → for testing  
+- `prod` namespace → for production  
+
+This makes it easier to manage large applications and teams.
 
 ---
 
+## **Working with Pods and Deployments**  
+
+### **Creating a Pod using `kubectl run`**  
+By using below command we can create pod:  
+
+```sh
+kubectl run tomcat --image=tomcat --port=8080
+```
+
+**Example Output:-**
+
+![Screenshot 2025-01-29 162157](https://github.com/user-attachments/assets/7961aec2-99aa-4376-be9a-b87ebd407c48)
+
+
+**Check the Pod status:** 
+
+By using below command we can see the pods of default namespace.
+
+```sh
+kubectl get pods
+```
+
+**Example Output:-**
+
+![Screenshot 2025-01-29 162224](https://github.com/user-attachments/assets/1928b209-f50a-4e02-957c-56c64677a3d0)
+
+
+**Describe the Pod for more details:**  
+
+By using below command we can see the all details of the pod.
+
+```sh
+kubectl describe pod tomcat
+```
+**Example Output:-**
+
+ ![Screenshot 2025-01-29 170324](https://github.com/user-attachments/assets/d21bd35b-c679-4361-b009-c6308855d613)
+
+
+**Delete the Pod:**
+
+By using below command we can delete the pod.
+
+```sh
+kubectl delete pod my-nginx
+```
+
+**Example Output:-**
+
+![image](https://github.com/user-attachments/assets/643acb41-c367-48a4-93a8-e1bb0d43d269)
+
+---
+
+
 ### **Services(Expose Apps to the Outside World)**  
-- **ClusterIP** 🏠 → Default, allows communication inside the cluster.  
-- **NodePort** 🚪 → Exposes the app on a specific port of the node.  
-- **LoadBalancer** ⚖️ → Distributes traffic across multiple nodes.  
+- **ClusterIP** → Default, allows communication inside the cluster.  
+- **NodePort** → Exposes the app on a specific port of the node.  
+- **LoadBalancer** → Distributes traffic across multiple nodes.  
 
 ---
 
