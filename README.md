@@ -127,10 +127,12 @@ Here’s a detailed, step-by-step guide on **how to set up Kubernetes using K3s 
    kubectl get pods
    kubectl get svc
    ```
+   **Example Output:-**
+   
    ![Screenshot 2025-01-29 173430](https://github.com/user-attachments/assets/09c4e53c-8570-4e06-ab94-372d08a193a4)
 
 
-2. Now we can access Nginx in browser:
+3. Now we can access Nginx in browser:
 
    Open the URL `http://<public-ip>:30007` in a web browser. You should see the default Nginx welcome page.
 
@@ -154,6 +156,11 @@ kubectl delete -f nginx-service.yaml
 
 ### **Conclusion**
 Successfully set up Kubernetes using K3s on an AWS Ubuntu Spot Instance and deployed an Nginx webpage in the Kubernetes cluster.
+
+---
+
+
+
 
 
 # **Day2:-**
@@ -291,38 +298,5 @@ kubectl delete pod my-nginx
 ![image](https://github.com/user-attachments/assets/643acb41-c367-48a4-93a8-e1bb0d43d269)
 
 ---
-
-
-### **Services(Expose Apps to the Outside World)**  
-- **ClusterIP** → Default, allows communication inside the cluster.  
-- **NodePort** → Exposes the app on a specific port of the node.  
-- **LoadBalancer** → Distributes traffic across multiple nodes.  
-
----
-
-### **Simple Diagram of Kubernetes Architecture**  
-
-```
-+-------------------+       +---------------------------+
-|   Master Node    |       |      Worker Nodes        |
-|------------------|       |-------------------------|
-| API Server      |       | Kubelet | Pod | Pod     |
-| Scheduler       |       | Kube Proxy | Pod | Pod  |
-| Controller Mgr  |       | CRI (Docker)            |
-| etcd (Database) |       |-------------------------|
-+------------------+       +---------------------------+
-        ⬇                          ⬇
-  Controls & Manages       Runs applications in Pods
-```
-
----
-
-### **🌟 Summary**
-✅ **Master Node** → Controls everything  
-✅ **Worker Nodes** → Run applications  
-✅ **Pods** → The smallest unit where apps run  
-✅ **Services** → Allow access to applications  
-
-With this simple architecture, **Kubernetes makes sure your applications run smoothly, scale automatically, and recover from failures!** 🚀🔥
 
   
