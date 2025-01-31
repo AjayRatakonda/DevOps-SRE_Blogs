@@ -18,7 +18,8 @@ Kubernetes **Service** is a stable network endpoint that allows communication be
 
 ### **ClusterIP (Default)**
 - **Used for internal communication** within the Kubernetes cluster.
-- Can’t be accessed from outside the cluster.
+- ClusterIP gives a stable IP for your application within the cluster.
+- Using this service we can’t be accessed from outside the cluster.
 
 #### **Example: ClusterIP Service**
 ```yaml
@@ -44,7 +45,8 @@ curl http://my-clusterip-service:80
 ---
 
 ### **NodePort**
-- Exposes a Pod **externally** using a port on each **Node’s IP**.
+- NodePort is opening a specific port on every node in the cluster.
+- Usig nodeport we can access the application externally by using nodeip followed by port number.
 - Accessible via `http://<NodeIP>:<NodePort>`
 
 #### **Example: NodePort Service**
@@ -72,8 +74,10 @@ curl http://<NodeIP>:30007
 ---
 
 ### **LoadBalancer**
-- Used in **cloud environments** (AWS, GCP, Azure).
-- Automatically creates an **external** Load Balancer.
+- LoadBalancer service is used for when you want to make your application accessible from outside the kubernetes cluster.
+- LoadBalancer service automatically distribute incoming traffic across multiple pods. Ensuring that no single pod is overloaded. This load distribution 
+  enhases the availability and scalability of your application.
+- LoadBalancer Used in **cloud environments** (AWS, GCP, Azure).
 
 #### **Example: LoadBalancer Service**
 ```yaml
