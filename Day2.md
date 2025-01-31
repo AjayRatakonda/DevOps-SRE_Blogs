@@ -125,7 +125,7 @@ kubectl describe pod tomcat
 By using below command we can delete the pod.
 
 ```sh
-kubectl delete pod my-nginx
+kubectl delete pod tomcat
 ```
 
 **Example Output:-**
