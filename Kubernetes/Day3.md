@@ -1,7 +1,7 @@
 ## **What is a Kubernetes Service?**
 Kubernetes **Service** is a stable network endpoint that allows communication between different parts of an application.
 
-🔹 **Why do we need a Service?**  
+ **Why do we need a Service?**  
 - Pods have dynamic (changing) IPs.  
 - Services provide a fixed IP and DNS name.  
 - Services allow Pods to communicate securely.
