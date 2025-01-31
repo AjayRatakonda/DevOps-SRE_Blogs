@@ -44,7 +44,7 @@ curl http://my-clusterip-service:80
 
 ---
 
-### **NodePort**
+### **NodePort** (Port Range must be between 30000-32767)
 - NodePort is opening a specific port on every node in the cluster.
 - Usig nodeport we can access the application externally by using nodeip followed by port number.
 
