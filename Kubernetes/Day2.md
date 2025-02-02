@@ -81,7 +81,7 @@ This makes it easier to manage large applications and teams.
 
 ---
 
-## **Working with Pods and Deployments**  
+## **Working with Pods**  
 
 ### **Creating a Pod using `kubectl run`**  
 By using below command we can create pod:  
