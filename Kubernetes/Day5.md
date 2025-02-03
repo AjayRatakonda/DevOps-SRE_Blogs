@@ -39,11 +39,15 @@ Minikube uses a container runtime like **Docker**, **containerd**, or **CRI-O**.
 ```bash
 sudo apt install -y docker.io
 ```
+
 Check Docker status:
 ```bash
 sudo systemctl enable --now docker
 docker --version
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/c5259bab-4e08-41ed-b9b4-c8bf749415d7)
 
 ---
 
@@ -52,6 +56,10 @@ Run the following command to install Minikube:
 ```bash
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/030b65fa-ebb2-4e3b-98fb-9f519600ff47)
+
 Move the binary to `/usr/local/bin/` for system-wide access:
 ```bash
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
@@ -60,6 +68,9 @@ Verify installation:
 ```bash
 minikube version
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/bd188e65-bf4e-4b14-8dc7-ef3fba3563ed)
 
 ---
 
@@ -70,6 +81,10 @@ Minikube requires `kubectl` to interact with the Kubernetes cluster.
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/5dd12eb1-e2c3-4367-8c7f-3220b71df897)
+
 
  Make it executable:
 ```bash
@@ -81,14 +96,21 @@ sudo mv kubectl /usr/local/bin/
 ```bash
 kubectl version --client
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/30cbd0be-973e-471d-a94c-ddb645b2be5e)
 
 ---
 
 ## **Step 6: Start Minikube**
 Now, start Minikube using the `docker` driver:
 ```bash
-minikube start --driver=docker
+minikube start --driver=docker --force
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/b945553c-7f99-459d-b0d9-9f2afa024a7d)
+
 - If you are using a **VM** (KVM or VirtualBox), use:
   ```bash
   minikube start --driver=kvm2
@@ -102,11 +124,9 @@ Check if Minikube started successfully:
 ```bash
 kubectl get nodes
 ```
-Expected Output:
-```
-NAME       STATUS   ROLES    AGE   VERSION
-minikube   Ready    master   1m    v1.XX.X
-```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/0cab29f3-40f3-4db7-accb-afbcc836be2b)
 
 ---
 
@@ -115,14 +135,25 @@ minikube   Ready    master   1m    v1.XX.X
 ```bash
 minikube status
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/a6ec7617-deae-4621-8384-2fbcf4259b16)
+
 ### Get Cluster Info:
 ```bash
 kubectl cluster-info
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/5950af00-8892-4ed0-8655-ec7d1212b929)
+
 ### List Running Pods:
 ```bash
 kubectl get pods -A
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/cac101f4-c798-44ed-b163-f23a6e1128c9)
 
 ---
 
