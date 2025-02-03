@@ -126,7 +126,7 @@ kubectl get pods -A
 
 ---
 
-## 🛠 **Step 8: Delete KIND Cluster (Optional)**
+## **Step 8: Delete KIND Cluster (Optional)**
 If you want to delete the cluster, run:
 ```bash
 kind delete cluster --name my-cluster
