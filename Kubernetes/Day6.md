@@ -41,6 +41,9 @@ sudo systemctl enable --now docker
 ```bash
 docker --version
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/79aafe24-1a6d-4154-b676-0483801fde35)
 
  Add your user to the `docker` group (optional, to run Docker without sudo):
 ```bash
@@ -57,6 +60,9 @@ KIND requires `kubectl` to interact with the Kubernetes cluster.
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/2182915d-a93f-4e49-91cc-496399c3b250)
 
  Make it executable:
 ```bash
@@ -68,6 +74,9 @@ sudo mv kubectl /usr/local/bin/
 ```bash
 kubectl version --client
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/77e62a67-c9f0-4acb-91d6-a59acadb276e)
 
 ---
 
@@ -76,6 +85,9 @@ kubectl version --client
 ```bash
 curl -Lo ./kind "https://kind.sigs.k8s.io/dl/latest/kind-linux-amd64"
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/3db7a0c7-ea61-4031-83d7-1fb1212d859a)
 
  Make it executable:
 ```bash
@@ -87,6 +99,9 @@ sudo mv kind /usr/local/bin/
 ```bash
 kind version
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/2a781f9d-5c5a-4e9d-a2cf-27bdc277a7bf)
 
 ---
 
@@ -95,16 +110,17 @@ kind version
 ```bash
 kind create cluster --name my-cluster
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/a4a5502a-63b3-4604-8c8a-2aab5ba02380)
 
  Check if the cluster is running:
 ```bash
 kubectl get nodes
 ```
-Expected Output:
-```
-NAME                     STATUS   ROLES                  AGE     VERSION
-my-cluster-control-plane   Ready    control-plane,master   1m      v1.XX.X
-```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/a020ee6e-f1de-4acd-ba08-0a2871eabe3c)
 
 ---
 
@@ -113,16 +129,25 @@ my-cluster-control-plane   Ready    control-plane,master   1m      v1.XX.X
 ```bash
 kind get clusters
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/ccf169b0-5a9a-420f-aec2-3505741f50eb)
 
  Get Kubernetes cluster info:
 ```bash
 kubectl cluster-info
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/681e94b9-a3c9-4903-bad0-cdc0fffe23d8)
 
  Get running pods in all namespaces:
 ```bash
 kubectl get pods -A
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/738bb519-4b06-4fa8-ab5d-53273b5b489e)
 
 ---
 
