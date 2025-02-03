@@ -1,7 +1,7 @@
 # DevOps-SRE_Blogs
 # **Day1:-**
 
-**1)How to set up Kubernetes using K3s on an AWS Spot Instance and deploy an Nginx webpage in the Kubernetes cluster?**
+## **1)How to set up Kubernetes using K3s on an AWS Spot Instance and deploy an Nginx webpage in the Kubernetes cluster?**
 
 Here’s a detailed, step-by-step guide on **how to set up Kubernetes using K3s on an AWS Ubuntu Spot Instance** and **deploy an Nginx webpage in the Kubernetes cluster**.
 
