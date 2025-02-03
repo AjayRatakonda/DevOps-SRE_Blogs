@@ -156,6 +156,9 @@ If you want to delete the cluster, run:
 ```bash
 kind delete cluster --name my-cluster
 ```
+**Sample Outpt**
+
+![image](https://github.com/user-attachments/assets/4814c894-1dbb-4cb9-83ee-5fc5a52c34f2)
 
 ---
 
