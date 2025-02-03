@@ -1,6 +1,6 @@
 # **Day4:-**
 
-**1)How to set up Multi-node kubernetes cluster using k3s?**
+## **1)How to set up Multi-node kubernetes cluster using k3s?**
 
 Here’s a **detailed step-by-step guide** to setting up a **multi-node Kubernetes cluster using K3s**  
 
