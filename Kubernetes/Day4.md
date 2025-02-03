@@ -109,7 +109,7 @@ Replace `<CONTAINER_ID>` with the container ID from `crictl ps`.
 
 ---
 
-### 🛠 **Container Management Commands**
+### **Container Management Commands**
 #### 6. **Check logs of a running container**
 ```bash
 crictl logs <CONTAINER_ID>
