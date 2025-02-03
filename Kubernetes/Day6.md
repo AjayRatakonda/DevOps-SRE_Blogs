@@ -1,4 +1,4 @@
-## **How to install kubernetes using KIND On Ubuntu**
+# **How to install kubernetes using KIND On Ubuntu**
 
 ## **Install Kubernetes using KIND on Ubuntu 22.04**  
 
