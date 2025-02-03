@@ -1,4 +1,4 @@
-## **How to install Minikube**
+## **How to install Minikube?**
 
 ## **Install Minikube on Ubuntu 22.04 Server – Step-by-Step Guide**
 
