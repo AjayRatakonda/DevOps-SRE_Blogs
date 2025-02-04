@@ -1,0 +1,277 @@
+### **StatefulSet with Persistent Storage (PV, PVC) for MySQL on an Ubuntu EC2 Instance**  
+
+### **What is a StatefulSet?**  
+A **StatefulSet** is a Kubernetes resource used to manage **stateful applications**, like **databases (MySQL, PostgreSQL, MongoDB, etc.)** or applications that need **persistent storage** and **stable identities** across restarts.
+
+### **Why StatefulSet?**  
+When running a database in Kubernetes, each instance (pod) needs:  
+1. **Stable and Unique Identity** – Each pod gets a **predictable name** (e.g., `db-0`, `db-1`, `db-2`) instead of a random one like Deployments.  
+2. **Persistent Storage** – Even if a pod restarts, its data remains intact.  
+3. **Ordered Scaling and Rolling Updates** – Pods are created or deleted **one at a time**, maintaining order.  
+
+### **How Does It Work?**  
+- If you scale up, new pods are added **sequentially** (`db-0` → `db-1` → `db-2`).  
+- If a pod fails, Kubernetes replaces it with the **same identity** and **same storage** (via PersistentVolume).  
+- Useful for applications that **store critical data** and cannot work properly with random pod names.  
+
+### **Example Use Case**  
+A **MongoDB ReplicaSet** needs stable pod names (`mongo-0`, `mongo-1`, `mongo-2`) so they can **communicate** reliably. A StatefulSet ensures this stability.  
+
+Would you like a simple YAML example to understand better? 🚀
+            
+**deploy a MySQL database using StatefulSet in Kubernetes on an Ubuntu EC2 instance** with **Persistent Volume (PV) and Persistent Volume Claim (PVC)**.  
+
+---
+
+## **Prerequisites**
+1. **Ubuntu 20.04/22.04 EC2 instance** (t2.medium or higher recommended)
+2. **Kubernetes Cluster** (Installed using `kubeadm` or `k3s`, or use Kind/minikube)
+3. **kubectl installed**
+5. **Storage Provisioner** (For Dynamic PV)
+
+---
+
+#### **Install K3s on the Ubuntu Spot Instance**
+1. Update the system Packages:
+   ```bash
+   sudo apt update && sudo apt upgrade -y
+   ```
+
+2. Install Prerequisites `curl` and `wget` :
+   ```bash
+   sudo apt install curl wget -y
+   ```
+
+3. Install K3s (lightweight Kubernetes):
+   ```bash
+   curl -sfL https://get.k3s.io | sh -
+   ```
+   
+
+4. Verify K3s installation:
+   ```bash
+   kubectl version
+   kubectl get nodes
+   ```
+   You should see the node in a `Ready` state.
+
+   **Sample Output**
+
+   ![image](https://github.com/user-attachments/assets/337dce9c-574f-4010-99a2-e2e6ddb562b3)
+
+---
+
+## **Step 2: Create Persistent Storage (PV & PVC)**
+Kubernetes requires **Persistent Volumes (PV)** to store data for stateful applications.  
+
+### **2.1 Create Persistent Volume (PV)**
+Create a YAML file **pv.yaml**:
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mysql-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: manual
+  hostPath:
+    path: "/mnt/data"  # Local directory for PV storage
+```
+Apply the PV:
+```bash
+kubectl apply -f pv.yaml
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/11a58b66-6a17-497b-94d6-5ccfda9eb942)
+
+
+### **2.2 Create Persistent Volume Claim (PVC)**
+Create a YAML file **pvc.yaml**:
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: manual
+```
+Apply the PVC:
+```bash
+kubectl apply -f pvc.yaml
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/643b6975-af46-4127-a3b6-51b2d8295684)
+
+---
+
+## **Step 3: Deploy MySQL StatefulSet**
+Create a YAML file **mysql-statefulset.yaml**:
+```yaml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql
+spec:
+  serviceName: "mysql"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "mypassword"
+            - name: MYSQL_DATABASE
+              value: "mydb"
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi
+```
+Apply the StatefulSet:
+```bash
+kubectl apply -f mysql-statefulset.yaml
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/1e5faa6f-b4ea-4f70-afeb-92d7a031e074)
+
+---
+
+## **Step 4: Create a Service for MySQL**
+Create a YAML file **mysql-service.yaml**:
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql
+  clusterIP: None
+```
+Apply the service:
+```bash
+kubectl apply -f mysql-service.yaml
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/d01e8c7b-20e3-46b6-bcff-a11108b064ec)
+
+---
+
+## **Step 5: Verify the Deployment**
+Check the **Pods**:
+```bash
+kubectl get pods
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/3acc5078-880b-4a95-9d49-6b34e55d5e7b)
+
+Check the **Persistent Volume & Claim**:
+```bash
+kubectl get pv,pvc
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/e63fd762-c43f-43de-9eb2-0285d35e0dcf)
+
+Check the **StatefulSet**:
+```bash
+kubectl get statefulset
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/b482ca1c-76c9-4d4c-9b7a-73b80cb9616a)
+
+---
+
+## **Step 6: Access MySQL Database**
+Once MySQL is running, connect to it:
+```bash
+kubectl exec -it mysql-0 -- mysql -u root -p
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/166d8d55-4906-411f-86f4-0b19241a887e)
+
+Enter the password (`mypassword`) and run:
+```sql
+SHOW DATABASES;
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/469032d6-a19e-4b12-aaa1-6d658234fe0b)
+
+---
+
+## **Step 7: Test Data Persistence**
+1. Create a table and insert data:
+   ```sql
+   USE mydb;
+   CREATE TABLE users (id INT PRIMARY KEY, name VARCHAR(50));
+   INSERT INTO users VALUES (1, 'Ajay');
+   SELECT * FROM users;
+   ```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/0bd4e8a2-58cd-457a-bde7-6cc6ec69ade5)
+ 
+2. Delete the MySQL pod:
+   ```bash
+   kubectl delete pod mysql-0
+   ```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/516fe17b-924f-4530-8931-fc80ee5eda1b)
+
+3. Check if data is still present after the pod restarts:
+   ```bash
+   kubectl exec -it mysql-0 -- mysql -u root -p -e "USE mydb; SELECT * FROM users;"
+   ```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/6f4457b1-2d87-46d1-841c-ddaba69ac381)
+
+--- 
