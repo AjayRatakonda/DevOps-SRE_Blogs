@@ -12,7 +12,6 @@ When running a database in Kubernetes, each instance (pod) needs:
 ### **How Does It Work?**  
 - If you scale up, new pods are added **sequentially** (`db-0` → `db-1` → `db-2`).  
 - If a pod fails, Kubernetes replaces it with the **same identity** and **same storage** (via PersistentVolume).  
-- Useful for applications that **store critical data** and cannot work properly with random pod names.  
 
 ### **Example Use Case**  
 A **MongoDB ReplicaSet** needs stable pod names (`mongo-0`, `mongo-1`, `mongo-2`) so they can **communicate** reliably. A StatefulSet ensures this stability.  
