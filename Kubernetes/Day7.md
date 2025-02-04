@@ -1,4 +1,4 @@
-### **StatefulSet with Persistent Storage (PV, PVC) for MySQL on an Ubuntu EC2 Instance**  
+### **Deploying a StatefulSet with Persistent Storage (PV, PVC) for MySQL on an Ubuntu EC2 Instance**  
 
 ### **What is a StatefulSet?**  
 A **StatefulSet** is a Kubernetes resource used to manage **stateful applications**, like **databases (MySQL, PostgreSQL, MongoDB, etc.)** or applications that need **persistent storage** and **stable identities** across restarts.
@@ -16,8 +16,6 @@ When running a database in Kubernetes, each instance (pod) needs:
 
 ### **Example Use Case**  
 A **MongoDB ReplicaSet** needs stable pod names (`mongo-0`, `mongo-1`, `mongo-2`) so they can **communicate** reliably. A StatefulSet ensures this stability.  
-
-Would you like a simple YAML example to understand better? 🚀
             
 **deploy a MySQL database using StatefulSet in Kubernetes on an Ubuntu EC2 instance** with **Persistent Volume (PV) and Persistent Volume Claim (PVC)**.  
 
