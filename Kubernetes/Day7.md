@@ -115,7 +115,40 @@ kubectl apply -f pvc.yaml
 ---
 
 ## **Step 3: Deploy MySQL StatefulSet**
-Create a YAML file **mysql-statefulset.yaml**:
+We can store the MySQL root password in a **Kubernetes Secret** instead of using plain text in the StatefulSet YAML. Here's how you can do it:  
+
+---
+
+### **Create a Secret for MySQL Password**
+Run the following command to create the secret:  
+```sh
+kubectl create secret generic mysql-secret --from-literal=MYSQL_ROOT_PASSWORD=mypassword
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/e62f5f9c-627a-470c-9d9a-b15e32758f4a)
+
+Alternatively, we can define the secret in a YAML file (`mysql-secret.yaml`):
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-secret
+type: Opaque
+data:
+  MYSQL_ROOT_PASSWORD: bXlwYXNzd29yZA==  # Base64 encoded value of "mypassword"
+```
+Apply the secret:  
+```sh
+kubectl apply -f mysql-secret.yaml
+```
+---
+
+### **Create a YAML file **mysql-statefulset.yaml**:
+Update your `StatefulSet` YAML to refer to the secret:
+
 ```yaml
 apiVersion: apps/v1
 kind: StatefulSet
@@ -139,29 +172,37 @@ spec:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "mypassword"
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: MYSQL_ROOT_PASSWORD
             - name: MYSQL_DATABASE
               value: "mydb"
           volumeMounts:
-            - name: mysql-storage
+            - name: mysql-pvc
               mountPath: /var/lib/mysql
   volumeClaimTemplates:
     - metadata:
-        name: mysql-storage
+        name: mysql-pvc
       spec:
         accessModes: ["ReadWriteOnce"]
         resources:
           requests:
             storage: 5Gi
 ```
-Apply the StatefulSet:
-```bash
+
+---
+
+### **Step 3.1: Apply the Updated StatefulSet**
+```sh
 kubectl apply -f mysql-statefulset.yaml
 ```
 
 **Sample Output**
 
-![image](https://github.com/user-attachments/assets/1e5faa6f-b4ea-4f70-afeb-92d7a031e074)
+![image](https://github.com/user-attachments/assets/9e24b729-c284-4886-b9bf-b0f22a7e58a3)
+
+Now, MySQL will use the password stored in Kubernetes Secrets instead of a plain-text password in the YAML file. 
 
 ---
 
@@ -207,7 +248,8 @@ kubectl get pv,pvc
 
 **Sample Output**
 
-![image](https://github.com/user-attachments/assets/e63fd762-c43f-43de-9eb2-0285d35e0dcf)
+![image](https://github.com/user-attachments/assets/06d8754a-e0d3-4578-826d-d295b6829429)
+
 
 Check the **StatefulSet**:
 ```bash
