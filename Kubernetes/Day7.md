@@ -314,3 +314,150 @@ SHOW DATABASES;
 ![image](https://github.com/user-attachments/assets/6f4457b1-2d87-46d1-841c-ddaba69ac381)
 
 --- 
+
+## **How to back up and restore a MySQL database running inside a Kubernetes StatefulSet?**
+
+To back up and restore a MySQL database running inside a **Kubernetes StatefulSet**, follow these steps:  
+
+---
+
+## **Step 1: Connect to the MySQL Pod**
+First, get the MySQL pod name:  
+```sh
+kubectl get pods -l app=mysql
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/d723bcf4-0bc0-4035-b5f4-882f795cbf66)
+
+Now, **exec** into the MySQL pod:
+```sh
+kubectl exec -it mysql-0 -- bash
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/f589a355-ee36-48b8-8fa4-d52d39861d0a)
+
+Once inside the pod, log in to MySQL using the root password:
+```sh
+mysql -u root -p
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/82007b55-7bc4-4231-b9b0-0a9181c405d1)
+
+Enter the **MYSQL_ROOT_PASSWORD** (stored in the Kubernetes Secret).  
+
+---
+
+## **Step 2: Take a Backup of the Database**
+Run the following **mysqldump** command inside the MySQL pod to back up the database:
+```sh
+mysqldump -u root -p mydb > /var/lib/mysql/mydb_backup.sql
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/fa9a8ea5-fb90-48df-af69-90f4b4db503a)
+
+
+Exit the MySQL shell:
+```sh
+exit
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/c9529c24-e875-4f79-b427-ba9de0214c8d)
+
+Copy the backup file to your local system:
+```sh
+kubectl cp mysql-0:/var/lib/mysql/mydb_backup.sql ./mydb_backup.sql
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/85af7081-b6fb-4a25-9bf3-cb78f02666cc)
+
+---
+
+## **Step 3: Delete the Database**
+Log back into MySQL:
+```sh
+kubectl exec -it mysql-0 -- mysql -u root -p
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/0d767c36-3aaa-451e-9a00-11e6aac9c9c1)
+
+Drop the database:
+```sql
+DROP DATABASE mydb;
+SHOW DATABASES;
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/7cad155b-a4b0-46ee-9f75-34d4f0cf01c1)
+
+Exit MySQL:
+```sh
+exit
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/c9529c24-e875-4f79-b427-ba9de0214c8d)
+
+---
+
+## **Step 4: Restore the Database from Backup**
+Create a new database:
+```sh
+kubectl exec -it mysql-0 -- mysql -u root -p -e "CREATE DATABASE mydb;"
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/ed4f6464-cf5b-4c2b-b4dd-2c79e4ae1da9)
+
+Restore the backup:
+```sh
+kubectl cp ./mydb_backup.sql mysql-0:/var/lib/mysql/mydb_backup.sql
+kubectl exec -it mysql-0 -- bash -c "mysql -u root -p mydb < /var/lib/mysql/mydb_backup.sql"
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/001c067e-6205-49b0-9f09-0377570294bd)
+
+---
+
+## **Step 5: Verify the Restoration**
+Log into MySQL again:
+```sh
+kubectl exec -it mysql-0 -- mysql -u root -p
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/dcd76cdf-c92c-4a04-853c-6999fdb00ca2)
+
+Check if the database and tables exist:
+```sql
+SHOW DATABASES;
+USE mydb;
+SELECT * FROM users;
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/dcbad2ee-c84c-49fa-9204-265304d94182)
+
+If everything looks good, exit MySQL:
+```sh
+exit
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/c9529c24-e875-4f79-b427-ba9de0214c8d)
+
+**Done!** The database has been backed up, deleted, and restored successfully. 
