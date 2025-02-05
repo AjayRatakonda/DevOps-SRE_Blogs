@@ -46,6 +46,10 @@ Before diving into practice, you should understand the key Helm concepts:
    ```bash
    kubectl get nodes
    ```
+4. If kubectl is not found, add it to the path:
+   ```bash
+   export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+   ```
 
 ---
 
@@ -188,8 +192,3 @@ kubectl get svc
 
 ---
 
-### **Uninstalling an Application**
-```bash
-helm uninstall my-nginx
-```
----
