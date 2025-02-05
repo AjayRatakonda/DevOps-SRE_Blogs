@@ -125,23 +125,71 @@ Before diving into practice, you should understand the key Helm concepts:
 
 ---
 
-## **Step 5: Work with Helm Charts**  
+### **Helm Repositories**  
+Helm uses repositories to store and distribute charts.
+```bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo update
+```
+**Sample Output**
 
-### **5.1 Create a Custom Helm Chart**  
-1. Create a new Helm chart:  
+![image](https://github.com/user-attachments/assets/117be836-55ce-4856-9fd4-901e272864a0)
+
+### **Installing an Application Using Helm**  
+Example: Install **NGINX** using Helm.
+```bash
+helm install my-nginx bitnami/nginx
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/a1830ca3-9eab-47f9-96aa-fbee419cdcd9)
+
+Check the deployed application:
+```bash
+kubectl get pods
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/7b3d36bc-b0e2-4dd8-8e96-0b15cc8822ac)
+
+check theservice:
+```bash
+kubectl get svc
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/ac08a964-d103-4b05-aab8-3fdb1fbea871)
+
+
+
+
+
+ **Find the Assigned Port:**
    ```bash
-   helm create mychart
+   kubectl get svc my-nginx
    ```
    **Sample Output**
 
-   ![image](https://github.com/user-attachments/assets/78cf8edb-c727-4f1e-b9f5-90410339e81b)
+   ![image](https://github.com/user-attachments/assets/05b2eecb-1a2f-46ef-aee7-a742282b44d7)
 
-2. Navigate to the chart directory:  
-   ```bash
-   cd mychart
-   ```
-   **Sample Output**
+   Here, **30784** is the exposed port.
 
-  ![image](https://github.com/user-attachments/assets/b5ae11ab-88e5-4fec-aa08-0e0dcd6dfcf5)
+3. **Access NGINX**
+   - Get your **EC2 Public IP** from the AWS Console.
+   -   - Open in browser:
+     ```
+     http://65.2.180.17:30784/
+     ```
+     **Sample Output**
 
-3. Modify the `values.yaml` file to customize configurations.  
+      ![Screenshot 2025-02-05 171325](https://github.com/user-attachments/assets/dd2451bc-c72e-404f-9e0b-fab129fe0df2)
+
+   - You should see the default NGINX welcome page. 🎉
+
+---
+
+### **Uninstalling an Application**
+```bash
+helm uninstall my-nginx
+```
+---
