@@ -146,7 +146,7 @@ kubectl apply -f mysql-secret.yaml
 ```
 ---
 
-### **Create a YAML file **mysql-statefulset.yaml**:
+### **Create a YAML file mysql-statefulset.yaml**
 Update your `StatefulSet` YAML to refer to the secret:
 
 ```yaml
