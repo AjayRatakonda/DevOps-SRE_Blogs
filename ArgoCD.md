@@ -125,6 +125,8 @@ Replace <NODE_IP> with your server’s IP address and <NODEPORT> with the NodePo
 
 If using the UI, enter `admin` as the username and the password is gPQ0SMrYDBsDNyb- retrieved above.
 
+![image](https://github.com/user-attachments/assets/11dfe758-63a3-4f9e-b95a-e64174dcffa3)
+
 ![image](https://github.com/user-attachments/assets/fbe3e958-20e3-42bb-8042-46031fead116)
 
 ---
