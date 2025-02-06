@@ -275,6 +275,10 @@ argocd app set nginx-app --sync-policy automated
 
 Now, whenever you push changes to Git, Argo CD will apply them automatically.
 
+# I changed deployment file replica count 1 to 2 and push changes to git hub repo, when changes occur in git repo automatically new pod will be created like below screenshot.
+
+![image](https://github.com/user-attachments/assets/6174534e-ec89-464f-b15d-4343cf40e1ff)
+
 ---
 
 ### **8. Clean Up**
