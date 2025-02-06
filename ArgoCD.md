@@ -121,7 +121,7 @@ Replace <NODE_IP> with your server’s IP address and <NODEPORT> with the NodePo
 ```
 **Sample Output**
 
-![image](https://github.com/user-attachments/assets/03ed402c-7e3f-467b-a352-71f09cef77aa)
+![image](https://github.com/user-attachments/assets/87e9be2f-4586-4661-b0dd-62bab9cfb00b)
 
 If using the UI, enter `admin` as the username and the password is gPQ0SMrYDBsDNyb- retrieved above.
 
