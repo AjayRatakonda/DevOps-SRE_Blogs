@@ -196,6 +196,9 @@ argocd app create nginx-app \
 
 ![image](https://github.com/user-attachments/assets/8505a925-a73f-4b40-862a-883b2cf9bac7)
 
+![image](https://github.com/user-attachments/assets/f3ff55b9-fa03-4085-98be-cc6bda724e69)
+
+
 Verify the application is created:
 ```sh
 argocd app list
@@ -203,8 +206,6 @@ argocd app list
 **Sample Output**
 
 ![image](https://github.com/user-attachments/assets/d10e5a40-543b-46f1-86a1-39eddec2762c)
-
-![image](https://github.com/user-attachments/assets/f3ff55b9-fa03-4085-98be-cc6bda724e69)
 
 ---
 
