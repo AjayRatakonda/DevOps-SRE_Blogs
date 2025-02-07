@@ -136,7 +136,7 @@ If using the UI, enter `admin` as the username and the password is gPQ0SMrYDBsDN
 Argo CD manages applications defined in Git repositories. Here’s how to deploy an app:
 
 #### **Step 1: Create a Git Repository**
-- Create a repository on GitHub (e.g., `argo-sample-app`)  
+- Create a repository on GitHub (e.g., `argocd-sample-app`)  
 - Add a Kubernetes manifest inside it (`deployment.yaml`, `service.yaml`)  
 
 Example `deployment.yaml`:
