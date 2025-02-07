@@ -30,8 +30,9 @@ Pre-Requisites:
 Install Java
 
 ```
-sudo apt update && apt upgrade -y
-sudo apt install openjdk-17-jre
+sudo su -
+apt update && apt upgrade -y
+apt install openjdk-17-jre
 ```
 
 Verify Java is Installed
@@ -132,3 +133,4 @@ http://<ec2-instance-public-ip>:8080/restart
 The docker agent configuration is now successful.
 
 ---
+
