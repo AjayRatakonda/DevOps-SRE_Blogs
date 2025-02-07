@@ -17,7 +17,7 @@ Prerequisites:
 
 #### **1. Cloud Infrastructure**  
 - **Instance Type**: AWS EC2 (t2.medium or higher)  
-- **OS**: Ubuntu 20.04 / Amazon Linux 2  
+- **OS**: Ubuntu 20.04 or more 
 - **Security Groups**: Open required ports
 
 ### Install Jenkins.
