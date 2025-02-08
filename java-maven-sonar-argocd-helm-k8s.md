@@ -173,10 +173,14 @@ Now you can access the `SonarQube Server` on `http://3.109.132.112:9000`
   
   goto sonarqube UI --> click on administrator --> my account --> click on security --> token section give name as sonar-token and click on generate token.
 
-- goto jenkins UI and click on manage jenkins --> click on credentials --> click on system --> click on global credentials --> add credentials --> add sonar-token here 
-
+- goto jenkins UI and click on manage jenkins --> click on credentials --> click on system --> click on global credentials --> add credentials --> add sonar-token here
 ![image](https://github.com/user-attachments/assets/85f72d0d-d2ff-4bd4-925a-3a772855334d)
-
+- as well as add your dockerhub credentials
+![image](https://github.com/user-attachments/assets/f81d2227-08b6-4bff-8c59-06a70961f4a4)
+- add your github credentials
+![image](https://github.com/user-attachments/assets/d5a92776-01d2-4afe-9e5b-bbd43cc36a9a)
+- afterthat restart once your jenkins server
+http://13.201.70.86:8080/restart
 ## **Install K3s on the Master Node**
  **Run the K3s Installer on server**  
 ```bash
@@ -213,9 +217,12 @@ After install, watch your operator come up using next command.
 ```bash
 kubectl get csv -n operators
 ```
+To use it, checkout the custom resource definitions (CRDs) introduced by this operator to start using it.
+
 ![image](https://github.com/user-attachments/assets/9454fbbf-ca1d-4df0-9450-336fdf89bacf)
 
-To use it, checkout the custom resource definitions (CRDs) introduced by this operator to start using it.
+
+
 
 
 
