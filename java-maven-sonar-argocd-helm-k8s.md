@@ -134,3 +134,88 @@ The docker agent configuration is now successful.
 
 ---
 
+### Create pipeline in jenkins 
+
+click on new item --> and type name as sample-project ---> select pipeline --->      click on ok 
+    
+![image](https://github.com/user-attachments/assets/41fb8c0e-30a5-42c5-9f4e-1b172ef8d1ff)
+
+select pipeline script from SCM --> and provide git repository url and branch name, jenkinsfile script path --> click on apply and save like below screenshots
+
+![image](https://github.com/user-attachments/assets/dc161fcd-64a6-4819-a68e-fb6b273ccdf8)
+![image](https://github.com/user-attachments/assets/0f96b286-0881-47b0-8727-640bd3224898)
+
+## Next Steps
+
+goto jenkins UI --> manage jenkins --> manage plugins --> available plugins --> install sonar scanner plugin like below 
+
+![image](https://github.com/user-attachments/assets/299ac7d0-a606-4a87-b09e-71b11e8b8299)
+
+### Configure a Sonar Server
+
+```
+apt install unzip
+adduser sonarqube
+sudo su - sonarqube
+wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.4.0.54424.zip
+unzip sonarqube-9.4.0.54424.zip
+chmod -R 755 /home/sonarqube/sonarqube-9.4.0.54424
+chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
+cd sonarqube-9.4.0.54424/bin/linux-x86-64/
+./sonar.sh start
+```
+
+Now you can access the `SonarQube Server` on `http://3.109.132.112:9000` 
+
+![image](https://github.com/user-attachments/assets/ab857d7d-6842-4118-9f9b-5656275a23c6)
+
+- next step is need to create sonar token
+  
+  goto sonarqube UI --> click on administrator --> my account --> click on security --> token section give name as sonar-token and click on generate token.
+
+- goto jenkins UI and click on manage jenkins --> click on credentials --> click on system --> click on global credentials --> add credentials --> add sonar-token here 
+
+![image](https://github.com/user-attachments/assets/85f72d0d-d2ff-4bd4-925a-3a772855334d)
+
+## **Install K3s on the Master Node**
+ **Run the K3s Installer on server**  
+```bash
+curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
+```
+ **Check if the cluster is running**  
+```bash
+sudo kubectl get nodes
+```
+![image](https://github.com/user-attachments/assets/f4f7782a-1a9b-47a1-b223-6f101357e6c4)
+
+## **Install kubernetes controllers using Operators**
+
+Install on Kubernetes
+
+Install Operator Lifecycle Manager (OLM), a tool to help manage the Operators running on your cluster.
+
+```bash
+curl -sL https://github.com/operator-framework/operator-lifecycle-manager/releases/download/v0.31.0/install.sh | bash -s v0.31.0
+```
+![image](https://github.com/user-attachments/assets/ac717cb5-2f75-48a8-a0e8-bb808ff0b12a)
+
+Install the operator by running the following command:
+
+```bash
+kubectl create -f https://operatorhub.io/install/argocd-operator.yaml
+```
+![image](https://github.com/user-attachments/assets/9e918151-d5e8-4099-94a3-76f77b9007ad)
+
+This Operator will be installed in the "operators" namespace and will be usable from all namespaces in the cluster.
+
+After install, watch your operator come up using next command.
+
+```bash
+kubectl get csv -n operators
+```
+![image](https://github.com/user-attachments/assets/9454fbbf-ca1d-4df0-9450-336fdf89bacf)
+
+To use it, checkout the custom resource definitions (CRDs) introduced by this operator to start using it.
+
+
+
