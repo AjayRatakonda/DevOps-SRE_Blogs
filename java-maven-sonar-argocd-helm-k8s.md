@@ -181,7 +181,7 @@ Now you can access the `SonarQube Server` on `http://3.109.132.112:9000`
 ![image](https://github.com/user-attachments/assets/d5a92776-01d2-4afe-9e5b-bbd43cc36a9a)
 - afterthat restart once your jenkins server
 http://13.201.70.86:8080/restart
-## **Install K3s on the Master Node**
+## **Install K3s**
  **Run the K3s Installer on server**  
 ```bash
 curl -sfL https://get.k3s.io | sh -s - --write-kubeconfig-mode 644
@@ -221,8 +221,82 @@ To use it, checkout the custom resource definitions (CRDs) introduced by this op
 
 ![image](https://github.com/user-attachments/assets/9454fbbf-ca1d-4df0-9450-336fdf89bacf)
 
+```bash
+kubectl get pods -n operators
+```
+![image](https://github.com/user-attachments/assets/dfe0902a-397a-4b4e-b1d8-0b7786fac4b1)
 
+## Open github repo and modify jenkinsfile like sonar ipaddress,etc.., and save jenkinsfile
 
+ next step is open jenkins UI and click on build option.
+
+ ![image](https://github.com/user-attachments/assets/6bc6ee21-7446-4226-9139-c9509f1fad51)
+
+## **ArgoCD** 
+vi argocd-basic.yaml
+
+```bash
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: example-argocd
+  labels:
+    example: basic
+spec: {}
+```
+
+```bash
+kubectl create -f argocd-basic.yaml
+kubectl get pods
+```
+![image](https://github.com/user-attachments/assets/9ead6967-f0b4-4910-abfd-a9ba198d1835)
+
+```bash
+kubectl get svc
+```
+![image](https://github.com/user-attachments/assets/6214fc66-a1a6-4731-a778-122c313c5e5a)
+
+```bash
+kubectl edit svc example-argocd-server
+```
+edit type: NodePort and save :wq!
+```bash
+kubectl get svc
+```
+![image](https://github.com/user-attachments/assets/103d048a-5e9e-4de4-b729-44057374a4e3)
+
+now, you can access argocd UI using server public ip and followed by NodePort
+```bash
+http://43.205.125.162:30376
+```
+![image](https://github.com/user-attachments/assets/ae1dcb4b-4004-427d-ade6-5e6048ce5892)
+
+## to know argocd password follow below steps
+
+```bash
+kubectl get secret
+kubectl edit secret example-argocd-cluster
+```
+![image](https://github.com/user-attachments/assets/ffe85e65-4896-48f5-ba66-d2cdc801b2de)
+
+copy the root password and convert it to base64 like below
+```bash
+echo ME5RelliSHU0bzV5Y0dTVXdwSjltWmp0ZnhYVElXN24= | base64 -d
+```
+![image](https://github.com/user-attachments/assets/1ec2a415-fb48-4ef7-915a-1e7bfc6f3145)
+
+Now, using above password you can login to argocd like below
+
+![image](https://github.com/user-attachments/assets/92a760a0-b9ce-44a6-a7dc-27384b4eeccf)
+
+![image](https://github.com/user-attachments/assets/14b80327-9f2d-4108-ba4c-9502f0103319)
+
+now, in argocd UI click on create new app and provide required fields correctly and click on create and click on sync app
+
+![image](https://github.com/user-attachments/assets/0c762a89-49bc-4632-a6da-3104c1a79805)
+![image](https://github.com/user-attachments/assets/561000e8-78cf-42a7-9d49-1dff2446b9d9)
+
+---
 
 
 
