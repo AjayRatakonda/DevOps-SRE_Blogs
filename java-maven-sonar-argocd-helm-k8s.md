@@ -10,7 +10,6 @@ Prerequisites:
    -  Java application code hosted on a Git repository
    -   Jenkins server
    -  Kubernetes cluster
-   -  Helm package manager
    -  Argo CD
 
 ## AWS EC2 Instance
