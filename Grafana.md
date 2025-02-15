@@ -1,4 +1,6 @@
-# **How to install Grafana in AWS Ubuntu spot instace**
+# **How to Monitor Application Server Metrics Using Grafana & Prometheus?**
+
+## **How to install Grafana in AWS Ubuntu spot instace**
 Here’s a step-by-step guide to installing **Grafana** on an **AWS Ubuntu 22.04 Spot Instance** with all the prerequisites.  
 
 ---
@@ -118,4 +120,96 @@ http://65.0.176.241:3000
 
 ---
 
-### **Grafana Installation Completed! 🎉**
+### **Grafana Installation Completed! 🎉**  
+---
+# **Next Step**
+# **How to install Prometheus in EC2 Ubuntu instance** 
+
+### **Install Prometheus on AWS EC2 Ubuntu 22.04 Spot Instance Using APT**  
+
+---
+
+## **Step 1: Install Prometheus**
+Run the following command to install Prometheus using APT:
+
+```bash
+sudo apt update
+sudo apt install prometheus -y
+```
+---
+
+## **Step 2: Verify Installation**
+Check if Prometheus is installed correctly:
+
+```bash
+prometheus --version
+```
+---
+
+## **Step 3: Enable and Start Prometheus Service**
+Since you installed Prometheus via APT, it should already have a systemd service. Enable and start it:
+
+```bash
+sudo systemctl enable prometheus
+sudo systemctl start prometheus
+```
+
+Check if Prometheus is running:
+
+```bash
+systemctl status prometheus
+```
+**Sample Output**
+
+![Screenshot 2025-02-15 172636](https://github.com/user-attachments/assets/314ef69a-0a9e-4a46-b429-c0c6abf3cb17)
+
+## **Step 4: Access Prometheus**
+Now, check if you can access Prometheus from your web browser:
+
+```
+http://65.0.176.241/:9090
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/b9f16094-304b-4dfb-9878-864d672672c1)
+
+---
+
+
+
+## **Connect Prometheus to Grafana**
+If you want to **visualize Prometheus metrics** in Grafana:
+1. Log in to Grafana.
+2. Grafana UI → **Data Sources** → **Add data source**.
+3. Select **Prometheus**.
+4. Set **Prometheu_URL** as:
+   ```
+   http://65.0.176.241:9090
+   ```
+5. Click **Save & Test**.
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/b0b334b3-f08f-4ebe-953a-6e97591f2170)
+![image](https://github.com/user-attachments/assets/f28a252c-3434-4a54-8b51-1e20e2127a62)
+
+Goto Dashboards -> click on new -> import -> provide grafana dashboard URL or ID as 1860 -> click on load
+
+**Sample Output**
+
+   ![image](https://github.com/user-attachments/assets/d5e49983-3d63-412b-81bc-b2557ddabcd3)
+
+   ![image](https://github.com/user-attachments/assets/b13b293c-ebb8-414b-aa89-8b65bc6fce65)
+
+After we need to select prometheus datasource like below
+
+![image](https://github.com/user-attachments/assets/4115cad0-49eb-4b13-adb7-1181685a50c9)
+![image](https://github.com/user-attachments/assets/91753894-35cd-41b6-90ee-eb8a6945109a)
+
+Next click on Import Option -> when we click on Import it shows Application Server Metrics like CPU, RAM, Storage and etc.., like below.
+
+![image](https://github.com/user-attachments/assets/ad1e6d1e-44e4-4961-b903-ab2107e6fb02)
+
+# I can now monitor my application server’s health with real-time visualizations. This helps in troubleshooting performance issues quickly.
+---
