@@ -37,6 +37,9 @@ Ensure required packages are installed:
 ```bash
 sudo apt install -y software-properties-common apt-transport-https wget
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/bcf57296-4f87-4197-8bf1-d0454eb5b7f7)
 
 ---
 
@@ -46,6 +49,9 @@ sudo mkdir -p /etc/apt/keyrings
 wget -q -O - https://packages.grafana.com/gpg.key | sudo tee /etc/apt/keyrings/grafana.asc
 echo "deb [signed-by=/etc/apt/keyrings/grafana.asc] https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/aeba6c96-4be7-407d-88d1-ceda3b0ab133)
 
 ---
 
@@ -54,6 +60,9 @@ echo "deb [signed-by=/etc/apt/keyrings/grafana.asc] https://packages.grafana.com
 sudo apt update
 sudo apt install -y grafana
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/fb94350d-1257-4c2a-beff-0d026b5c14f2)
 
 ---
 
@@ -61,11 +70,17 @@ sudo apt install -y grafana
 ```bash
 sudo systemctl enable --now grafana-server
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/47a578fa-fcc5-453d-8ef2-1d6a446e687f)
 
 Check if Grafana is running:
 ```bash
 sudo systemctl status grafana-server
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/d28398fe-860b-47ff-a517-7ed2b6d718ae)
 
 ---
 
@@ -82,8 +97,11 @@ sudo systemctl status grafana-server
 ### **Step 9: Access Grafana Web Interface**
 Open your browser and go to:
 ```
-http://your-instance-ip:3000
+http://65.0.176.241:3000
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/c70e5458-6b38-4a9e-9080-85226392117e)
 
 ---
 
@@ -91,14 +109,12 @@ http://your-instance-ip:3000
 - **Default Username:** `admin`
 - **Default Password:** `admin`
 - Change the password on first login.
+  
+**Sample Output**
 
----
-
-### **Verification**
-Check if Grafana is running:
-```bash
-sudo systemctl status grafana-server
-```
+![image](https://github.com/user-attachments/assets/11a41854-4b7d-429c-b452-846dae693e9c)
+![image](https://github.com/user-attachments/assets/1889fdfa-1b78-4ed3-b261-5666d9f3b3b6)
+![image](https://github.com/user-attachments/assets/d6d9a747-3d76-473f-9427-1d318f7f573c)
 
 ---
 
