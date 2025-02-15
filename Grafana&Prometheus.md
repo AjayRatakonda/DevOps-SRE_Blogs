@@ -120,7 +120,7 @@ http://65.0.176.241:3000
 
 ---
 
-### **Grafana Installation Completed! 🎉**  
+### **Grafana Installation Completed**  
 ---
 # **Next Step**
 # **How to install Prometheus in EC2 Ubuntu instance** 
