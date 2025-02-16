@@ -167,7 +167,7 @@ systemctl status prometheus
 Now, check if you can access Prometheus from your web browser:
 
 ```
-http://65.0.176.241/:9090
+http://65.0.176.241:9090
 ```
 
 **Sample Output**
