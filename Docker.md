@@ -58,7 +58,7 @@ We will go step by step:
 
 ---
 
-or we can install docker using unofficial docker by using 
+or we can install unofficial docker by using 
 ```bash
 apt install docker.io -y
 ```
