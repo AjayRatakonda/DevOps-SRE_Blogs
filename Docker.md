@@ -262,3 +262,209 @@ docker rm <container_id>
 ---
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+---
+
+## **Step 6: Executing Commands Inside a Running Container**
+Once a container is running, you may need to interact with it.
+
+### **12. Attach to a Running Container**
+Attach to the container’s active session:
+```sh
+docker attach <container_id>
+```
+**Sample Output**
+
+
+To detach from the container, use `CTRL + P + Q` without stopping it.
+
+### **13. Execute Commands in a Running Container**
+Execute a command inside a running container:
+```sh
+docker exec -it <container_id> bash
+```
+Example:
+```sh
+docker exec -it nginx bash
+```
+(For Alpine-based images, use `/bin/sh` instead of `bash`.)
+
+---
+
+## **Step 7: Container Logs & Monitoring**
+### **14. View Container Logs**
+To check logs of a running container:
+```sh
+docker logs <container_id>
+```
+To follow live logs:
+```sh
+docker logs -f <container_id>
+```
+
+### **15. Check Container Resource Usage**
+Monitor a running container’s resource usage:
+```sh
+docker stats
+```
+
+---
+
+## **Step 8: Container Networking**
+### **16. List Networks**
+```sh
+docker network ls
+```
+It shows available networks (`bridge`, `host`, `none`, etc.).
+
+### **17. Create a Custom Network**
+```sh
+docker network create my-network
+```
+
+### **18. Run a Container in a Custom Network**
+```sh
+docker run -d --name web-server --network=my-network nginx
+```
+
+### **19. Inspect a Network**
+```sh
+docker network inspect my-network
+```
+
+---
+
+## **Step 9: Docker Volumes & Data Persistence**
+By default, when a container is removed, its data is lost. **Volumes** help persist data.
+
+### **20. Create and Use a Volume**
+Create a volume:
+```sh
+docker volume create my-data
+```
+
+Run a container with a volume:
+```sh
+docker run -d -v my-data:/usr/share/nginx/html --name nginx-container nginx
+```
+
+### **21. List Volumes**
+```sh
+docker volume ls
+```
+
+### **22. Inspect a Volume**
+```sh
+docker volume inspect my-data
+```
+
+### **23. Remove a Volume**
+```sh
+docker volume rm my-data
+```
+
+---
+
+## **Step 10: Dockerfile & Custom Images**
+Instead of pulling images, you can **build custom images** using a `Dockerfile`.
+
+### **24. Create a Dockerfile**
+Create a file named `Dockerfile`:
+```Dockerfile
+# Use an official base image
+FROM ubuntu:latest
+
+# Install dependencies
+RUN apt update && apt install -y nginx
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+### **25. Build an Image from Dockerfile**
+```sh
+docker build -t my-nginx .
+```
+
+### **26. Run a Container from the Custom Image**
+```sh
+docker run -d -p 8080:80 my-nginx
+```
+
+---
+
+## **Step 11: Docker Compose**
+Docker Compose helps manage multiple containers.
+
+### **27. Install Docker Compose**
+```sh
+sudo apt install docker-compose -y
+```
+
+### **28. Create `docker-compose.yml`**
+```yaml
+version: '3'
+services:
+  web:
+    image: nginx
+    ports:
+      - "8080:80"
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+```
+
+### **29. Start Containers with Compose**
+```sh
+docker-compose up -d
+```
+
+### **30. Stop Containers with Compose**
+```sh
+docker-compose down
+```
+
+---
+
+## **Step 12: Docker Security Best Practices**
+- Avoid running containers as root.
+- Use minimal base images like `alpine` instead of `ubuntu`.
+- Scan images for vulnerabilities:
+  ```sh
+  docker scan my-image
+  ```
+- Enable resource limits (`--memory`, `--cpu` flags).
+
+---
+
+
+
