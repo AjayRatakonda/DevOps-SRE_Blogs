@@ -9,7 +9,50 @@ These instructions include:
 - Installing dependencies  
 - Copying files  
 - Setting environment variables  
-- Defining the command to run the container  
+- Defining the command to run the container
+
+### **Dockerfile Instructions Explained**  
+
+1. **FROM**  
+   - Sets the base image for the container.  
+   - Example: `FROM ubuntu:latest` (Uses the latest Ubuntu as the base image).  
+
+2. **RUN**  
+   - Executes commands inside the container during image build.  
+   - Example: `RUN apt update && apt install -y nginx` (Installs Nginx inside the image).  
+
+3. **COPY**  
+   - Copies files from your local system to the container.  
+   - Example: `COPY index.html /usr/share/nginx/html/` (Copies `index.html` to the container).  
+
+4. **ADD**  
+   - Similar to COPY, but can also extract compressed files.  
+   - Example: `ADD website.tar.gz /usr/share/nginx/html/` (Extracts and copies files).  
+
+5. **CMD**  
+   - Defines the default command to run when the container starts.  
+   - Example: `CMD ["nginx", "-g", "daemon off;"]` (Starts Nginx).  
+
+6. **ENTRYPOINT**  
+   - Works like CMD but allows arguments to be passed at runtime.  
+   - Example: `ENTRYPOINT ["nginx", "-g"]`  
+   - Allows running `docker run myimage "daemon off;"` to pass arguments.  
+
+7. **EXPOSE**  
+   - Specifies which ports the container should use.  
+   - Example: `EXPOSE 80` (Tells Docker the container will use port 80).  
+
+8. **WORKDIR**  
+   - Sets the working directory for the container.  
+   - Example: `WORKDIR /app` (All following commands will run inside `/app`).  
+
+9. **ENV**  
+   - Sets environment variables inside the container.  
+   - Example: `ENV MY_NAME=Ajay` (Defines a variable `MY_NAME` inside the container).  
+
+10. **VOLUME**  
+    - Creates a mount point for persistent storage.  
+    - Example: `VOLUME /data` (Persists files in `/data` even after the container is removed).    
   
 ### **How to Practice Nginx with a Dockerfile in Ubuntu 22**  
 #### **Step 1: Create a Directory for Your Project**  
@@ -24,7 +67,51 @@ Run the following command to create a Dockerfile:
 vi Dockerfile
 ```
 
-#### **Step 3: Write the Dockerfile Instructions**  
+#### **Step 3: Write the Dockerfile Instructions** 
+Sure! Here is a simple explanation of all Dockerfile instructions in an easy-to-understand way.  
+
+### **Example: Nginx Dockerfile Using Ubuntu Base Image**  
+```dockerfile
+# Use Ubuntu as the base image
+FROM ubuntu:latest
+
+# Set environment variable
+ENV APP_ENV=production
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Install Nginx
+RUN apt update && apt install -y nginx
+
+# Copy website files to the container
+COPY index.html /var/www/html/index.html
+
+# Expose port 80
+EXPOSE 80
+
+# Create a volume for persistent storage
+VOLUME /var/log/nginx
+
+# Set the default command to run
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+### **How to Build and Run the Container**
+1. Build the image:  
+   ```
+   docker build -t my-nginx .
+   ```
+2. Run the container:  
+   ```
+   docker run -d -p 8080:80 --name my-nginx my-nginx
+   ```
+3. Access Nginx in the browser:  
+   ```
+   http://localhost:8080
+   ```
+
+Let me know if you have any doubts!
 Copy and paste the following content:  
 ```dockerfile
 # Use Ubuntu as the base image
