@@ -79,7 +79,6 @@ docker info
 
 ![image](https://github.com/user-attachments/assets/6d1d4da2-8f52-4b11-b0ee-824fbe879098)
 
-
 #### **2. Running Your First Container**
 Run a simple container using the **hello-world** image:
 ```bash
@@ -261,21 +260,6 @@ docker rm <container_id>
 
 ---
 
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-
 ## **Step 6: Executing Commands Inside a Running Container**
 Once a container is running, you may need to interact with it.
 
@@ -286,6 +270,7 @@ docker attach <container_id>
 ```
 **Sample Output**
 
+![image](https://github.com/user-attachments/assets/8fe2e56b-9229-400c-8488-4aa90e50cd3e)
 
 To detach from the container, use `CTRL + P + Q` without stopping it.
 
@@ -300,6 +285,10 @@ docker exec -it nginx bash
 ```
 (For Alpine-based images, use `/bin/sh` instead of `bash`.)
 
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/eaa7a86c-a23b-473f-af3a-f032b3ed9d23)
+
 ---
 
 ## **Step 7: Container Logs & Monitoring**
@@ -312,12 +301,18 @@ To follow live logs:
 ```sh
 docker logs -f <container_id>
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/11d57806-bc03-4fc3-b86b-eb09c7a1b3b3)
 
 ### **15. Check Container Resource Usage**
 Monitor a running container’s resource usage:
 ```sh
 docker stats
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/7e01ac51-037c-473b-8272-8d073333aa10)
 
 ---
 
@@ -328,20 +323,34 @@ docker network ls
 ```
 It shows available networks (`bridge`, `host`, `none`, etc.).
 
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/cffede15-94c5-44da-8dc1-66071e14ef33)
+
 ### **17. Create a Custom Network**
 ```sh
 docker network create my-network
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/bf5a4aad-b321-45b3-a4e2-043da550abf0)
 
 ### **18. Run a Container in a Custom Network**
 ```sh
 docker run -d --name web-server --network=my-network nginx
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/95cc9dbc-e9e3-4b66-bb49-77f3f9ee4093)
 
 ### **19. Inspect a Network**
 ```sh
 docker network inspect my-network
 ```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/f4ccec97-6f62-4bc6-966f-838e0de4df0e)
 
 ---
 
@@ -354,25 +363,40 @@ Create a volume:
 docker volume create my-data
 ```
 
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/f65ef77f-7df8-4091-a292-cadf3870552c)
 Run a container with a volume:
 ```sh
 docker run -d -v my-data:/usr/share/nginx/html --name nginx-container nginx
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/8cd38dde-b067-4178-875e-d4483c0f7241)
 
 ### **21. List Volumes**
 ```sh
 docker volume ls
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/f7645d6e-18e8-4e95-94fa-0fa2e66f9b18)
 
 ### **22. Inspect a Volume**
 ```sh
 docker volume inspect my-data
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/0a43be20-a4aa-451b-af11-4bc8bf366886)
 
 ### **23. Remove a Volume**
 ```sh
 docker volume rm my-data
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/6fb60105-48a2-4af1-a74d-4b76ecb38114)
 
 ---
 
