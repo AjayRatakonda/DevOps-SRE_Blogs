@@ -411,13 +411,22 @@ CMD ["nginx", "-g", "daemon off;"]
 
 ### **25. Build an Image from Dockerfile**
 ```sh
-docker build -t my-nginx .
+docker build -t nginx:latest .
+docker images
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/9fb3cdb6-8db7-4d2a-8bb7-940e000f4a0c)
+![image](https://github.com/user-attachments/assets/aa398cdf-81ef-4a54-8b31-ad6a4cd2eb93)
 
 ### **26. Run a Container from the Custom Image**
 ```sh
-docker run -d -p 8080:80 my-nginx
+docker run -d -p 8080:80 nginx
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/bb5055d1-d0ff-4503-a7d1-0978e8ea8aab)
+![image](https://github.com/user-attachments/assets/13f26e62-50cd-4085-af4d-69c35580b637)
 
 ---
 
