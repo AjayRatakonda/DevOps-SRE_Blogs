@@ -45,7 +45,7 @@ sudo cat /var/lib/rancher/k3s/server/node-token
 ---
 
 ## **🔗 Step 3: Install K3s on Worker Nodes**
-Run the following on **each worker node**, replacing `<MASTER_IP>` and `<TOKEN>`:
+Run the following on **each worker node**, replacing `masternode/controlplane<MASTER_IP>` and `<TOKEN>`:
 ```bash
 curl -sfL https://get.k3s.io | K3S_URL="https://172.31.13.49:6443" K3S_TOKEN="K10b944b48298edf1ff07cbd53b58ce15867cfe9d5f49ecb85d26862367d10c1571::server:e6ffa4fd23df815de1d991e7e03efe0b" sh -
 ```
