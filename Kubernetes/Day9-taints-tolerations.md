@@ -18,9 +18,31 @@ Taints and tolerations **control which pods can run on which nodes** in a Kubern
 ### **Example 1: Taint a Node**  
 Tainting a node to accept only specific workloads:  
 ```sh
-kubectl taint nodes node1 key=value:NoSchedule
+kubectl taint nodes worker-node-1 key=value:NoSchedule
 ```
-- This means **no pods** will be scheduled on `node1` **unless they have a matching toleration**.  
+- This means **no pods** will be scheduled on `worker-node-1` **unless they have a matching toleration**.  
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/da6a940d-9c69-4f81-94b5-9dd7c7bb63e0)
+
+I have one master/controlplane and one workernode, now i tainting controlplane node also
+
+```sh
+kubectl taint node ip-172-31-45-202 key=value:NoSchedule
+```
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/028fd63c-aeb0-42d1-8e1b-277fcefa8cc0)
+
+now i try to create pod, it will not created because all nodes are tainted, see below screenshot pod status is pending, because there is no available node to schedule it on.
+
+```sh
+kubectl run nginx --image=nginx:latest --port=80
+```
+
+![image](https://github.com/user-attachments/assets/63c64d54-67fe-4f8a-b687-861bd0b3abc8)
 
 ---
 
@@ -41,7 +63,19 @@ spec:
   - name: my-container
     image: nginx
 ```
-Now, this pod can be **scheduled on the tainted node** (`node1`).  
+
+Now, this pod can be **scheduled on the tainted node** (`worker-node-1`).
+
+```sh
+kubectl create -f pod.yml
+```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/b18c47d9-65fc-4213-b3d8-c576eed0e48b)
+
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/efd0fd2b-a88c-4f15-85ba-22c1dd834f3e)
 
 ---
 
@@ -58,8 +92,15 @@ Now, this pod can be **scheduled on the tainted node** (`node1`).
 ### **Example 3: Removing a Taint**  
 To remove a taint from a node:  
 ```sh
-kubectl taint nodes node1 key=value:NoSchedule-
+kubectl taint nodes worker-node-1 key=value:NoSchedule-
 ```
+**Sample Output**
+
+![image](https://github.com/user-attachments/assets/8e418712-0db5-4bb4-8490-5869c5f73887)
+
+now, I try to create pod it wil be created in worker-node-1, because worker-node-1 is available, see below screenshot for your reference
+
+![image](https://github.com/user-attachments/assets/44bb9667-c673-494a-aac4-991c18f434c3)
 
 ---
 
