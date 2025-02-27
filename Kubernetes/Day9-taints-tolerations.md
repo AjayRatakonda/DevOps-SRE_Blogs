@@ -9,6 +9,9 @@ Taints & Tolerations
 ---------------------
  Taints & Tolerations control which pod can create on which nodes in k8s cluster.
 
+ taint-taint is used to schedule  particular pods to particular node.
+
+
 There are three conditions in taints:-
 
 1)NoSchedule= for example I have two worker nodes and one pod is running on node1 now I taint node1 with noschedule condition existing pod still running on node1 but when I try to create pods, new pods not created in node1 if we want to create new pods in taint node1 we need to mention toleration key=value:NoSchedule, now pod will be created in node1
