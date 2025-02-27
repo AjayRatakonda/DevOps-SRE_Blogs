@@ -61,7 +61,10 @@ Incident management follows a structured **workflow** to quickly detect, respond
 - **P1 (Critical)** → Immediate action required (e.g., System outage).  
 - **P2 (High)** → Significant issue but not critical (e.g., Performance issue).  
 - **P3 (Medium)** → Limited impact (e.g., Partial service disruption).  
-- **P4 (Low)** → Minor issue (e.g., UI bug).  
+- **P4 (Low)** → Minor issue (e.g., UI bug).
+
+  ![image](https://github.com/user-attachments/assets/53cca99c-8617-488a-94b8-07fdc076289c)
+
 
 ---
 
