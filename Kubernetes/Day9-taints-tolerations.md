@@ -11,7 +11,7 @@ Taints & Tolerations
 
 There are three conditions in taints:-
 
-1)NoSchedule= for example I have two worker nodes and one pod is running on node1 now I taint node1 with noschedule condition existing pod still running on node1 but when I try to create pods in node1 new pods not created if we want to create new pods in taint node1 we need to mention toleration key=value:NoSchedule, now pod will be created in node1
+1)NoSchedule= for example I have two worker nodes and one pod is running on node1 now I taint node1 with noschedule condition existing pod still running on node1 but when I try to create pods, new pods not created in node1 if we want to create new pods in taint node1 we need to mention toleration key=value:NoSchedule, now pod will be created in node1
 
 2)NoExecute= for example i have one pod running in node1 now i taint node1 with noexecute condition the existing pod will be evicted to anothernode if we want to create a pod in node1 we need to mention tolerations key=value:NoExecute now pod will be created in node1
 
