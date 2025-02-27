@@ -5,6 +5,18 @@ Taints and tolerations **control which pods can run on which nodes** in a Kubern
 - **Taints (applied to nodes)**: Prevent unwanted pods from running on specific nodes.  
 - **Tolerations (applied to pods)**: Allow specific pods to bypass taints and run on those nodes.  
 
+Taints & Tolerations
+---------------------
+ Taints & Tolerations control which pod can create on which nodes in k8s cluster.
+
+There are three conditions in taints:-
+
+1)NoSchedule= for example I have two worker nodes and one pod is running on node1 now I taint node1 with noschedule condition existing pod still running on node1 but when I try to create pods in node1 new pods not created if we want to create new pods in taint node1 we need to mention toleration key=value:NoSchedule, now pod will be created in node1
+
+2)NoExecute= for example i have one pod running in node1 now i taint node1 with noexecute condition the existing pod will be evicted to anothernode if we want to create a pod in node1 we need to mention tolerations key=value:NoExecute now pod will be created in node1
+
+3)PreferNoSchedule= for example i have 2 worker nodes now i taint node1 with condition PreferNoSchedule now when i try to create pod first it will try to create worker node2 if node2 is tainted with other conditions it will be created in node1 only.
+
 ---
 
 ### **How Taints & Tolerations Work?**  
