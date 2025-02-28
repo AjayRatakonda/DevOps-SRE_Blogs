@@ -101,7 +101,7 @@ spec:
 ---
 
 ### **Step 3: Create an HPA (`hpa.yaml`)**
-Create an **HPA resource** that scales pods **between 1 and 5 replicas**, based on **CPU usage above 50%**.
+Create an **HPA resource** that scales pods **between 1 and 7 replicas**, based on **CPU usage above 50%**.
 
 ```yaml
 apiVersion: autoscaling/v2
@@ -198,4 +198,4 @@ Once CPU usage decreases, **HPA will automatically scale down** the pods.
 
 This setup ensures your application **scales automatically based on demand**.
 
-Let me know if you need more details.
+---
