@@ -60,11 +60,16 @@ Auto Scaling is a feature that **automatically adds or removes resources** (like
 
   ![image](https://github.com/user-attachments/assets/cb2427ee-b1dd-4de1-a9b2-56883359c4f8)
 
-## Step 5: Configure Auto Scaling Policies
+## Step 5: Configure Load Balancer (Optional)
+- Choose "Attach to an existing load balancer" if you have one.
+- If you do not have a load balancer, select "Skip".
+- Click "Next".
+  
+## Step 6: Configure Auto Scaling Policies
 - Under Desired capacity, set:
      Minimum instances: 1
-     Desired instances: 2
-     Maximum instances: 3
+     Desired instances: 1
+     Maximum instances: 5
 - Choose "Target Tracking Scaling Policy".
 - Click "Create a scaling policy" and configure:
     Metric type: Average CPU Utilization
@@ -75,8 +80,68 @@ Auto Scaling is a feature that **automatically adds or removes resources** (like
   ![image](https://github.com/user-attachments/assets/3cb586f8-e5d8-4591-a83d-03a26450811d)
   ![image](https://github.com/user-attachments/assets/d162ec3a-279f-4282-b2cf-09d6e4a9e9a5)
 
-  
+## Step 7: Review and Create the Auto Scaling Group
+- Review all the settings.
+- Click "Create Auto Scaling Group".
 
+  ![image](https://github.com/user-attachments/assets/acde0921-8af2-41c9-bfdf-ab8a20eda233)
+
+- Auto scaling group is created.
+
+  ![image](https://github.com/user-attachments/assets/cf9ef02e-5a31-402a-ab5d-847563dedc19)
+
+- goto ec2 instances here we can see one instance is created because we mentioned in auto scaling policy minimum instance is 1 so one instance is created automatically.
+
+- now if server cpu/memory increases 50%, automatically new instance created.
+
+## If we want to increase server cpu/memory, connect to ec2 server and increase cpu using stress command.
+
+## **Step 8: Test Auto Scaling**
+1. Go to **EC2 Instances** and check if instances are running, one ec2 instance is running.
+
+   ![image](https://github.com/user-attachments/assets/34b7b74e-5eba-40d3-8995-1e3b680c9414)
+
+2. connect ec2 instance using
+    ```sh
+    ssh -i mumbai.pem ubuntu@43.205.124.54
+    ```
+3. Simulate high CPU usage by connecting to an instance:  
+   ```sh
+   stress --cpu 2 
+   ```
+   ![image](https://github.com/user-attachments/assets/7f7cd34c-6fe3-45cd-918b-38abb59b9b6a)
+
+
+4. Check if new instances are launched when CPU exceeds **50%**.
+  - check below new instances created automatically because existing servers cpu exceeds 50%.
+
+   ![image](https://github.com/user-attachments/assets/4e21cd45-1816-4b02-984e-1a0d5d47c0fa)
+
+
+6. Stop stress testing:  
+   ```sh
+   killall stress
+   ```
+   
+7. Check if instances scale **down** after some time.  
+
+  below we can see instance automatically down.
+
+  ![image](https://github.com/user-attachments/assets/4334a891-cc68-48cd-b274-5c1239551db9)
+
+---
+
+## **Step 9: Delete Auto Scaling Group (Clean Up)**
+1. In the **EC2 Dashboard**, go to **Auto Scaling Groups**.  
+2. Select `MyAutoScalingGroup`.  
+3. Click **"Delete"** → Confirm the deletion.
+
+   ![image](https://github.com/user-attachments/assets/e95dc992-af12-45e2-9149-0051a7728721)
+  
+5. Go to **Launch Templates**, select `MyAutoScalingTemplate`, and delete it.    
+7. Check **EC2 Instances** and manually terminate any remaining instances.  
+
+---
   
 
 
