@@ -87,9 +87,6 @@ Auto Scaling is a feature that **automatically adds or removes resources** (like
   ![image](https://github.com/user-attachments/assets/acde0921-8af2-41c9-bfdf-ab8a20eda233)
 
 - Auto scaling group is created.
-
-  ![image](https://github.com/user-attachments/assets/cf9ef02e-5a31-402a-ab5d-847563dedc19)
-
 - goto ec2 instances here we can see one instance is created because we mentioned in auto scaling policy minimum instance is 1 so one instance is created automatically.
 
 - now if server cpu/memory increases 50%, automatically new instance created.
