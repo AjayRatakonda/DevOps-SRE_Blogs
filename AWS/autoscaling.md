@@ -44,7 +44,38 @@ Auto Scaling is a feature that **automatically adds or removes resources** (like
   ![image](https://github.com/user-attachments/assets/dc9c13d3-3c62-41a4-a63a-1681cc72f4dd)
 
 ## Step 2: Create an Auto Scaling Group
+- In the EC2 Dashboard, click "Auto Scaling Groups" on the left panel.
+- Click "Create Auto Scaling group".
+- Enter a name for the Auto Scaling group (e.g., MyAutoScalingGroup).
+- Under Launch Template, select the one you created (MyAutoScalingTemplate).
 
+  ![image](https://github.com/user-attachments/assets/b4344182-f0ab-4291-a97b-7d477b500bb6)
+
+- Click "Next"
+
+## Step 4: Configure Network and Subnets
+- Select an existing VPC (default VPC is fine).
+- Select at least two subnets in different Availability Zones.
+- Click "Next".
+
+  ![image](https://github.com/user-attachments/assets/cb2427ee-b1dd-4de1-a9b2-56883359c4f8)
+
+## Step 5: Configure Auto Scaling Policies
+- Under Desired capacity, set:
+     Minimum instances: 1
+     Desired instances: 2
+     Maximum instances: 3
+- Choose "Target Tracking Scaling Policy".
+- Click "Create a scaling policy" and configure:
+    Metric type: Average CPU Utilization
+    Target value: 50%
+    Cooldown period: 60 seconds 
+- Click "Next".
+
+  ![image](https://github.com/user-attachments/assets/3cb586f8-e5d8-4591-a83d-03a26450811d)
+  ![image](https://github.com/user-attachments/assets/d162ec3a-279f-4282-b2cf-09d6e4a9e9a5)
+
+  
 
   
 
