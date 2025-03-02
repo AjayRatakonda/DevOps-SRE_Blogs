@@ -93,8 +93,17 @@ This guide explains how to create **Spot Instances** in AWS and attach them to a
 
 ## **Step 7: Clean Up Resources**  
 1. In the **EC2 Dashboard**, go to **Auto Scaling Groups** and delete `SpotAutoScalingGroup`.  
+
+    ![image](https://github.com/user-attachments/assets/0dbca856-6718-4abf-8a9e-aa67df69d800)
+
 2. Go to **Load Balancers** and delete `SpotLoadBalancer`.  
+
+   ![image](https://github.com/user-attachments/assets/d54a94e4-d490-4abb-a92e-ece8922d3c76)
+ 
 3. Go to **Target Groups** and delete `SpotTargetGroup`.  
+
+   ![image](https://github.com/user-attachments/assets/07a4a229-714d-4508-9d3e-44c21e45d885)
+
 4. Go to **Spot Requests** and cancel active spot instances.  
 5. Check **EC2 Instances** and terminate any running instances.  
 
