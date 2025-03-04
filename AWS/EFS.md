@@ -16,7 +16,7 @@
 
 ---
 
-## **How to Create EFS Mount EFS to an EC2 Server**  
+## **How to Create EFS & Mount EFS to an EC2 Servers**  
 
 ### **Step 1: Create an EFS File System**
 1. **Go to AWS Console** → **EFS Dashboard**.  
