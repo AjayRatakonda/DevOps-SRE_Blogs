@@ -25,9 +25,11 @@
   ![image](https://github.com/user-attachments/assets/52e68248-2fae-4ea6-81d6-a6166c5a3e97)
 
 4. Choose the **VPC** where your EC2 instance is running(here my instance vpc id is vpc-07f39eca99ae0d016).  
-5. Click **"Create"** and wait for the file system to be available.  
 
   ![image](https://github.com/user-attachments/assets/d182c272-4886-4641-85f3-596c486f3193)
+
+5. Click **"Create"** and wait for the file system to be available.  
+
   ![image](https://github.com/user-attachments/assets/37b80315-cbea-43ac-911a-e23af46965a3)
 
 ---
@@ -143,13 +145,13 @@ Now, EFS will mount automatically when the instance reboots.
   ```
   ![image](https://github.com/user-attachments/assets/95845fa4-1fa9-444e-8565-fe72fdaa3ce1)
 
-- now i create one another file in one instance it will automatically reflects two servers like below 
+- now i create one file in one instance, it will automatically reflects other servers like below 
   ```sh
   touch ajay.txt
   ```
   ![image](https://github.com/user-attachments/assets/2e5af643-0e0d-499e-8faf-7ecc1036f510)
 
-- now we will check another server also, whether same file is reflecting or not.
+- now we will check another server, whether same file is reflecting or not.
 
   ![image](https://github.com/user-attachments/assets/47e0193b-dc06-4058-a212-e4b2c68c43e3)
 
