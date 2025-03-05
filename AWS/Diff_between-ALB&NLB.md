@@ -44,9 +44,9 @@ Here’s a **comparison table** for better visualization:
 ---
 In an interview, we can answer like this:  
 
-**"Application Load Balancer (ALB) works at Layer 7 of the OSI model, meaning it routes traffic based on content like URLs, headers, and cookies. It is best for websites, APIs, and microservices that need smart routing.**  
+**"Application Load Balancer (ALB) works at Layer 7(Application layer) of the OSI model, meaning it routes traffic based on content like URLs, headers, and cookies. It is best for websites, APIs, and microservices that need smart routing.**  
 
-**Network Load Balancer (NLB) works at Layer 4, meaning it routes traffic based on IP and port. It is designed for high-performance applications that need ultra-low latency, like gaming, financial transactions, or VoIP services.**  
+**Network Load Balancer (NLB) works at Layer 4(Transport layer), meaning it routes traffic based on IP and port. It is designed for high-performance applications like gaming, financial transactions.**  
 
 **ALB supports HTTP and HTTPS, while NLB supports TCP, UDP, and TLS. ALB checks application health based on HTTP responses, while NLB does basic network-level health checks. ALB is smarter, while NLB is faster."**  
 
