@@ -42,7 +42,7 @@ Here’s a **comparison table** for better visualization:
 | **Best Use Cases**     | Websites, APIs, microservices | Gaming, real-time apps, financial services |
 
 ---
-In an interview, you can answer like this:  
+In an interview, we can answer like this:  
 
 **"Application Load Balancer (ALB) works at Layer 7 of the OSI model, meaning it routes traffic based on content like URLs, headers, and cookies. It is best for websites, APIs, and microservices that need smart routing.**  
 
