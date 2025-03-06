@@ -14,62 +14,44 @@
    - Open the [Amazon EC2 console](https://console.aws.amazon.com/ec2/).
    - Click **"Launch Instances"**.
    - Configure your instance as needed.
-   - In the **"Instance Purchasing Options"** section, select **"Request Spot Instances"**.
+   - at the time of creating instance install SSM using below script(here my os is ubuntu)
+
+     ![image](https://github.com/user-attachments/assets/25a2bc78-b6c8-4e21-a8bd-ad84c2cd43fd)
+     ![image](https://github.com/user-attachments/assets/2bfa56e1-b1ce-4867-a2fd-1b7f4f160e55)
+
+   - and connect with ec2 and check wheter SSM installed or not.
+
+     ![image](https://github.com/user-attachments/assets/e9b3d006-f0f7-47d1-af09-3432d9b62efd)
+
+   - and check cpu usage like below.
+
+     ![image](https://github.com/user-attachments/assets/7baea46b-bb22-496b-9260-7914d9dc534b)
+
    - Complete the launch process.
 
-**2. Create an IAM Role for AWS FIS**
+**2. Create IAM Role**
 
-   - Open the [IAM console](https://console.aws.amazon.com/iam/).
-   - Click **"Roles"**, then **"Create role"**.
-   - Choose **"AWS service"** and select **"Fault Injection Simulator"**.
+    - create one role and give policy as administrative access like below.
 
-     ![Screenshot 2025-03-06 173643](https://github.com/user-attachments/assets/a550fbb6-d0ae-43bc-8b94-b6537acfa9f2)
-    
-   - Attach the **"AWSFaultInjectionSimulatorFullAccess"** policy.
-
-     ![Screenshot 2025-03-06 173652](https://github.com/user-attachments/assets/5273a5b9-4cbf-45f2-943e-cf81b253d4c9)
-
-   - Name the role (e.g., **"FIS-Spot-Interruption-Role"**) and create it.
-
-     ![Screenshot 2025-03-06 173832](https://github.com/user-attachments/assets/09cbc05d-b491-4134-8d3d-c937799734d3)
-     ![image](https://github.com/user-attachments/assets/18339afa-3c73-4595-ae3f-f1d57db3e549)
+    ![image](https://github.com/user-attachments/assets/5640869a-6bb8-4d7f-9d0f-4462a44b10aa)
 
      
-**3. Create an AWS FIS Experiment Template**
+**3. Navigate to AWS FIS service**
 
-   - Open the [AWS FIS console](https://console.aws.amazon.com/fis/).
+    - click on scenario library and select EC2 Stress:CPU and click on create template with scenario option like below screenshot.
 
-     ![Screenshot 2025-03-06 160022](https://github.com/user-attachments/assets/d458bd53-a55f-4c94-9eab-b0d026069b4a)
+      ![image](https://github.com/user-attachments/assets/1f6af4ac-6f04-48e3-83b0-2f6e456ad7ae)
+      ![image](https://github.com/user-attachments/assets/716191c8-05ea-4079-9ed7-8d1d787582a4)  
+      ![image](https://github.com/user-attachments/assets/b4c0870e-123f-4b8a-ace0-94aa36c028e0)
 
-   - Click **"Experiment templates"**, then **"Create experiment template"**.
+    - create new role and add policy as like below
 
-     ![Screenshot 2025-03-06 160233](https://github.com/user-attachments/assets/5660d4f6-097d-442b-a85b-56c91eee5a2a)
+      ![image](https://github.com/user-attachments/assets/1fb15edd-0bd1-438b-9afb-523d69e66f53)
 
-   - Provide a name and description.
+      ![image](https://github.com/user-attachments/assets/e5d2c231-919c-4b3d-bb76-e9f5b6ad8db6)
+      ![image](https://github.com/user-attachments/assets/8b1ad2ee-8209-4b21-a0e8-6bbbbb97b380)
 
-     ![image](https://github.com/user-attachments/assets/54d67518-c955-4dff-948d-2083040d0494)
-     
-   - Under **"Actions"**, click **"Add action"**:
-     - Action type: **"aws:ec2:send-spot-instance-interruptions"**.
-     - Parameters: Set **"durationBeforeInterruption"** (e.g., **"PT2M"** for 2 minutes).
-
-       ![image](https://github.com/user-attachments/assets/b137fc77-ac88-4e10-a5f6-bd0332a88414)
-
-   - Under **"Targets"**, click **"Add target"**:
-     - Resource type: **"aws:ec2:instance"**.
-     - Selection mode: **"ALL"** or specify criteria to target your Spot Instance.
-
-       ![image](https://github.com/user-attachments/assets/8da6ae77-f770-45aa-9204-73d6801b1d9d)
-
-   - For **"Role"**, select the IAM role created earlier.
-
-     ![image](https://github.com/user-attachments/assets/ed30aeb1-d40e-4c17-a8c8-d7d13e35e7f6)
-
-   - Review and create the template.
-
-     ![image](https://github.com/user-attachments/assets/f37ce7fd-3560-4ef1-87ab-57ce1c4db801)
-     ![image](https://github.com/user-attachments/assets/b247ca6a-6c45-4753-9390-20dd0c81389f)
-     ![image](https://github.com/user-attachments/assets/3893f736-ffcc-4c89-b015-af2c3a89333c)
+    - click on create experiment 
 
 **4. Start the Experiment**
 
@@ -77,8 +59,9 @@
    - Select your template and click **"Actions"**, then **"Start experiment"**.
    - Confirm to initiate the experiment.
 
-     ![image](https://github.com/user-attachments/assets/a4ce6a2c-34d1-4a09-8b0c-a12aa6713b47)
-     ![image](https://github.com/user-attachments/assets/7404a5a3-3c65-497d-9671-91035d7c100c)
+     ![image](https://github.com/user-attachments/assets/6d35812a-ca26-499a-a449-7227f8a6489b)
+     ![image](https://github.com/user-attachments/assets/d95c0e70-e43b-4b77-ae85-042841ac76ea)
+
 
 **5. Monitor the Experiment**
 
