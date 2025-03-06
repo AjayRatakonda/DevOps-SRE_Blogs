@@ -7,43 +7,65 @@
 ### **How to Practice AWS FIS (Step by Step Guide)**  
 
 #### **Step 1: Sign in to AWS Console**  
-- Go to the **AWS Management Console**.  
-- Search for **"Fault Injection Simulator"** in the search bar.  
-- Click on **AWS Fault Injection Simulator**.  
+- Go to the **AWS Management Console**.
+  
+**1. Launch a Spot Instance**
 
-#### **Step 2: Create an Experiment Template**  
-- Click **"Create experiment template"**.  
-- Give it a **name** (e.g., `Test-FIS-Experiment`).  
-- Select an **IAM role** with **FIS permissions** (create one if needed).  
+   - Open the [Amazon EC2 console](https://console.aws.amazon.com/ec2/).
+   - Click **"Launch Instances"**.
+   - Configure your instance as needed.
+   - In the **"Instance Purchasing Options"** section, select **"Request Spot Instances"**.
+   - Complete the launch process.
 
-#### **Step 3: Define Target Resources**  
-- Choose the **AWS service to test** (e.g., EC2, RDS, ECS).  
-- Use **resource tags** to target specific instances (`Key: environment, Value: test`).  
+**2. Create an IAM Role for AWS FIS**
 
-#### **Step 4: Add Actions (Fault Injection Scenarios)**  
-- Click **"Add action"** and choose a failure type:  
-  - **Stop EC2 instances** (to test instance failure).  
-  - **Increase CPU load** (to test performance under stress).  
-  - **Network latency** (to check response to slow connections).  
+   - Open the [IAM console](https://console.aws.amazon.com/iam/).
+   - Click **"Roles"**, then **"Create role"**.
+   - Choose **"AWS service"** and select **"Fault Injection Simulator"**.
 
-#### **Step 5: Set Safety Controls**  
-- Add a **stop condition** (e.g., CloudWatch alarm triggers if CPU > 90%).  
-- Enable **rollback actions** to restore services after testing.  
+     ![Screenshot 2025-03-06 173643](https://github.com/user-attachments/assets/a550fbb6-d0ae-43bc-8b94-b6537acfa9f2)
+    
+   - Attach the **"AWSFaultInjectionSimulatorFullAccess"** policy.
 
-#### **Step 6: Start Experiment**  
-- Click **"Start experiment"**.  
-- Monitor in **CloudWatch Logs**.  
+     ![Screenshot 2025-03-06 173652](https://github.com/user-attachments/assets/5273a5b9-4cbf-45f2-943e-cf81b253d4c9)
 
-#### **Step 7: Analyze & Improve**  
-- Check **how your application behaved** during failure.  
-- Adjust **auto-scaling, monitoring, or failover strategies** based on results.  
+   - Name the role (e.g., **"FIS-Spot-Interruption-Role"**) and create it.
 
----
+     ![Screenshot 2025-03-06 173832](https://github.com/user-attachments/assets/09cbc05d-b491-4134-8d3d-c937799734d3)
+     ![image](https://github.com/user-attachments/assets/18339afa-3c73-4595-ae3f-f1d57db3e549)
 
-### **Use Case Example**  
-Imagine you manage a web app on **EC2** with an **RDS database**. You can use AWS FIS to:  
-- **Stop an EC2 instance** and check if the **Auto Scaling Group launches a new one**.  
-- **Simulate high CPU usage** to see if **CloudWatch alarms trigger scaling**.  
-- **Slow down network traffic** to check **how APIs respond to latency**.  
+     
+**3. Create an AWS FIS Experiment Template**
+
+   - Open the [AWS FIS console](https://console.aws.amazon.com/fis/).
+   - Click **"Experiment templates"**, then **"Create experiment template"**.
+   - Provide a name and description.
+   - For **"Role"**, select the IAM role created earlier.
+   - Under **"Actions"**, click **"Add action"**:
+     - Action type: **"aws:ec2:send-spot-instance-interruptions"**.
+     - Parameters: Set **"durationBeforeInterruption"** (e.g., **"PT2M"** for 2 minutes).
+   - Under **"Targets"**, click **"Add target"**:
+     - Resource type: **"aws:ec2:instance"**.
+     - Selection mode: **"ALL"** or specify criteria to target your Spot Instance.
+   - Review and create the template.
+
+**4. Start the Experiment**
+
+   - In the AWS FIS console, navigate to **"Experiment templates"**.
+   - Select your template and click **"Actions"**, then **"Start experiment"**.
+   - Confirm to initiate the experiment.
+
+**5. Monitor the Experiment**
+
+   - Monitor the experiment's progress in the AWS FIS console.
+   - After the specified duration, AWS FIS will simulate a Spot Instance interruption.
+   - Ensure your application responds appropriately to the interruption.
+
+**6. Clean Up Resources**
+
+   - Terminate the Spot Instance if it's no longer needed.
+   - Delete the AWS FIS experiment template if not required for future tests.
+
+For more detailed information, refer to the [AWS FIS User Guide on testing Spot Instance interruptions](https://docs.aws.amazon.com/fis/latest/userguide/fis-tutorial-spot-interruptions.html).
 
 ---
