@@ -38,22 +38,46 @@
 **3. Create an AWS FIS Experiment Template**
 
    - Open the [AWS FIS console](https://console.aws.amazon.com/fis/).
+
+     ![Screenshot 2025-03-06 160022](https://github.com/user-attachments/assets/d458bd53-a55f-4c94-9eab-b0d026069b4a)
+
    - Click **"Experiment templates"**, then **"Create experiment template"**.
+
+     ![Screenshot 2025-03-06 160233](https://github.com/user-attachments/assets/5660d4f6-097d-442b-a85b-56c91eee5a2a)
+
    - Provide a name and description.
-   - For **"Role"**, select the IAM role created earlier.
+
+     ![image](https://github.com/user-attachments/assets/54d67518-c955-4dff-948d-2083040d0494)
+     
    - Under **"Actions"**, click **"Add action"**:
      - Action type: **"aws:ec2:send-spot-instance-interruptions"**.
      - Parameters: Set **"durationBeforeInterruption"** (e.g., **"PT2M"** for 2 minutes).
+
+       ![image](https://github.com/user-attachments/assets/b137fc77-ac88-4e10-a5f6-bd0332a88414)
+
    - Under **"Targets"**, click **"Add target"**:
      - Resource type: **"aws:ec2:instance"**.
      - Selection mode: **"ALL"** or specify criteria to target your Spot Instance.
+
+       ![image](https://github.com/user-attachments/assets/8da6ae77-f770-45aa-9204-73d6801b1d9d)
+
+   - For **"Role"**, select the IAM role created earlier.
+
+     ![image](https://github.com/user-attachments/assets/ed30aeb1-d40e-4c17-a8c8-d7d13e35e7f6)
+
    - Review and create the template.
+
+     ![image](https://github.com/user-attachments/assets/f37ce7fd-3560-4ef1-87ab-57ce1c4db801)
+     ![image](https://github.com/user-attachments/assets/b247ca6a-6c45-4753-9390-20dd0c81389f)
+     ![image](https://github.com/user-attachments/assets/3893f736-ffcc-4c89-b015-af2c3a89333c)
 
 **4. Start the Experiment**
 
    - In the AWS FIS console, navigate to **"Experiment templates"**.
    - Select your template and click **"Actions"**, then **"Start experiment"**.
    - Confirm to initiate the experiment.
+
+     ![image](https://github.com/user-attachments/assets/a4ce6a2c-34d1-4a09-8b0c-a12aa6713b47)
 
 **5. Monitor the Experiment**
 
