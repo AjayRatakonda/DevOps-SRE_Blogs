@@ -78,6 +78,7 @@
    - Confirm to initiate the experiment.
 
      ![image](https://github.com/user-attachments/assets/a4ce6a2c-34d1-4a09-8b0c-a12aa6713b47)
+     ![image](https://github.com/user-attachments/assets/7404a5a3-3c65-497d-9671-91035d7c100c)
 
 **5. Monitor the Experiment**
 
