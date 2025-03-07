@@ -15,6 +15,7 @@
    - Click **"Launch Instances"**.
    - Configure your instance as needed.
    - at the time of creating instance install SSM using below script(here my os is ubuntu)
+   - Complete the launch process.
 
      ![image](https://github.com/user-attachments/assets/25a2bc78-b6c8-4e21-a8bd-ad84c2cd43fd)
      ![image](https://github.com/user-attachments/assets/2bfa56e1-b1ce-4867-a2fd-1b7f4f160e55)
@@ -27,18 +28,17 @@
 
      ![image](https://github.com/user-attachments/assets/7baea46b-bb22-496b-9260-7914d9dc534b)
 
-   - Complete the launch process.
-
+   
 **2. Create IAM Role**
 
-    - create one role and give policy as administrative access like below.
+  - create one role and give policy as administrative access like below.
 
-    ![image](https://github.com/user-attachments/assets/5640869a-6bb8-4d7f-9d0f-4462a44b10aa)
+  ![image](https://github.com/user-attachments/assets/5640869a-6bb8-4d7f-9d0f-4462a44b10aa)
 
      
 **3. Navigate to AWS FIS service**
 
-    - click on scenario library and select EC2 Stress:CPU and click on create template with scenario option like below screenshot.
+  - click on scenario library and select EC2 Stress:CPU and click on create template with scenario option like below screenshot.
 
       ![image](https://github.com/user-attachments/assets/1f6af4ac-6f04-48e3-83b0-2f6e456ad7ae)
       ![image](https://github.com/user-attachments/assets/716191c8-05ea-4079-9ed7-8d1d787582a4)  
