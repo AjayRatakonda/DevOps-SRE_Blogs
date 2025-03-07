@@ -79,7 +79,9 @@ You can **store a secret** in AWS Secrets Manager and use it in K3s. Follow thes
 
   ![image](https://github.com/user-attachments/assets/bd2744e8-3668-4226-83e0-1701d88565c2)
   ![image](https://github.com/user-attachments/assets/33efed86-7e45-40cb-997f-b45b09839f1d)
-  
+  ![image](https://github.com/user-attachments/assets/c1468b17-a09a-46c9-881f-8f7266a15421)
+  ![image](https://github.com/user-attachments/assets/582f32f7-f4e8-460b-89fa-42bdb5cffcae)
+
 ---
 
 #### **Step 3: Access Secret from K3s Pod**  
