@@ -44,14 +44,14 @@
       ![image](https://github.com/user-attachments/assets/716191c8-05ea-4079-9ed7-8d1d787582a4)  
       ![image](https://github.com/user-attachments/assets/b4c0870e-123f-4b8a-ace0-94aa36c028e0)
 
-    - create new role and add policy as like below
+  - create new role and add policy as like below
 
       ![image](https://github.com/user-attachments/assets/1fb15edd-0bd1-438b-9afb-523d69e66f53)
 
       ![image](https://github.com/user-attachments/assets/e5d2c231-919c-4b3d-bb76-e9f5b6ad8db6)
       ![image](https://github.com/user-attachments/assets/8b1ad2ee-8209-4b21-a0e8-6bbbbb97b380)
 
-    - click on create experiment 
+   - click on create experiment 
 
 **4. Start the Experiment**
 
