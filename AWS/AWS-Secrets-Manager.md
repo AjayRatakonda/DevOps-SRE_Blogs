@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/a910fb7d-08fd-497e-ac8d-d16bb29fed88)### **What is AWS Secrets Manager?**  
+### **What is AWS Secrets Manager?**  
 AWS Secrets Manager is a service that helps you **store, manage, and retrieve sensitive information** (like passwords, API keys, database credentials) securely. It automatically **rotates secrets**, reducing the risk of exposure.  
 
 ---
