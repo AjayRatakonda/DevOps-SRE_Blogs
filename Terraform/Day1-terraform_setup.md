@@ -11,14 +11,12 @@ Follow these steps to set up **GitHub Codespaces**, install **Terraform**, and *
 ### **Step 1: Enable GitHub Codespaces**  
 1. Log in to **GitHub** at [github.com](https://github.com/).  
 2. Go to your **repository** where you want to create the Codespace.  
+3. Click on **Code** → **Codespaces** → **Create Codespace on main**.  
 
   ![image](https://github.com/user-attachments/assets/2297f2b2-edad-4a52-a9de-cb785bd9d2d5)
-  
-4. Click on **Code** → **Codespaces** → **Create Codespace on main**.  
-
   ![image](https://github.com/user-attachments/assets/da0ee71e-2cd2-4647-bc47-0e43bd2e5d04)
 
-5. Wait for the environment to launch (it may take a few seconds).  
+4. Wait for the environment to launch (it may take a few seconds).  
 
 ---
 
