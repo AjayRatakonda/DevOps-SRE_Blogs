@@ -1,4 +1,4 @@
-# **How to Create an AWS EC2 Instance Using Terraform**
+# **How to install terraform and aws cli on windows and how to Create an AWS EC2 Instance Using Terraform**
 
 This guide explains how to create an EC2 instance using Terraform with three configuration files: `main.tf`, `variables.tf`, and `terraform.tfvars`.
 
