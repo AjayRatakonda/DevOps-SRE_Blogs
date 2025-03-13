@@ -56,6 +56,8 @@ resource "aws_instance" "my_instance" {
   }
 }
 ```
+![image](https://github.com/user-attachments/assets/02e4bfdd-6877-42da-bd25-4d95016a4929)
+
 
 ### **Create `variables.tf`** (Defines input variables)
 ```hcl
@@ -79,14 +81,16 @@ variable "instance_name" {
   type        = string
 }
 ```
+![image](https://github.com/user-attachments/assets/9e212e17-bd47-476a-a244-cd3b4a102c71)
 
 ### **Create `terraform.tfvars`** (Assigns values to variables)
 ```hcl
 aws_region     = "ap-south-1"
-ami_id         = "ami-0c55b159cbfafe1f0"  # Change based on region
+ami_id         = "ami-00bb6a80f01f03502"  # Change based on region
 instance_type  = "t2.micro"
 instance_name  = "Terraform-EC2"
 ```
+![image](https://github.com/user-attachments/assets/d548fb55-af90-44fb-a782-016502403601)
 
 ---
 
@@ -96,23 +100,32 @@ instance_name  = "Terraform-EC2"
 ```bash
 terraform init
 ```
+![image](https://github.com/user-attachments/assets/cf1230ec-487c-43e9-9bee-27e086c4dacf)
 
 ### **Validate Configuration**
 ```bash
 terraform validate
 ```
+![image](https://github.com/user-attachments/assets/b296067d-424a-401f-975d-d4817eceb6f3)
 
 ### **View Execution Plan**
 ```bash
 terraform plan
 ```
+![image](https://github.com/user-attachments/assets/266c0201-aa74-499e-a7b4-f2dab6193fc5)
+![image](https://github.com/user-attachments/assets/dcaf52f8-f928-4558-96e5-36ebb8daa45c)
+![image](https://github.com/user-attachments/assets/e81560a4-c6d2-47c8-84d3-a7b53138a7db)
 
 ### **Apply Configuration (Create EC2 Instance)**
 ```bash
 terraform apply -auto-approve
 ```
+![image](https://github.com/user-attachments/assets/2783c236-0f66-4c1d-96ae-835587e44386)
+![image](https://github.com/user-attachments/assets/4f972584-9459-42b6-9292-f0a0c612468b)
 
 Once completed, the EC2 instance will be created in AWS.
+
+![image](https://github.com/user-attachments/assets/8c08d06e-74d0-49db-a3ac-c6a3a24beeba)
 
 ---
 
@@ -122,10 +135,13 @@ Once completed, the EC2 instance will be created in AWS.
 1. Open **AWS Console** → **EC2 Dashboard**
 2. Find the instance with the **tag** `Terraform-EC2`
 
+![image](https://github.com/user-attachments/assets/adf0efd5-5ea3-4087-bee0-b4b8aaba14e5)
+
 ### **Check Using AWS CLI**
 ```bash
 aws ec2 describe-instances --filters "Name=tag:Name,Values=Terraform-EC2" --query "Reservations[*].Instances[*].[InstanceId,State.Name]" --output table
 ```
+![image](https://github.com/user-attachments/assets/ccde2e2b-4da4-487f-b6c1-8ed9a38928ef)
 
 ---
 
@@ -134,8 +150,9 @@ If you no longer need the instance:
 ```bash
 terraform destroy -auto-approve
 ```
+![image](https://github.com/user-attachments/assets/429544c6-a438-4f0a-9247-b80cf5dd680d)
+![image](https://github.com/user-attachments/assets/9904b5a2-8a7f-44e6-ad8a-cdc401570f8d)
+![image](https://github.com/user-attachments/assets/dc032c47-0cec-46ed-a0e0-60613c303692)
+![image](https://github.com/user-attachments/assets/34acc546-98ac-4917-8263-421e088fc042)
 
 ---
-
-## **Conclusion**
-You have successfully created an EC2 instance using Terraform. Modify the configuration to add **security groups, key pairs, and EBS volumes** to enhance your setup.
