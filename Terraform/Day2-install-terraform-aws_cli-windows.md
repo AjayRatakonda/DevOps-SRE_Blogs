@@ -148,6 +148,31 @@ aws ec2 describe-instances --filters "Name=tag:Name,Values=Terraform-EC2" --quer
 ```
 ![image](https://github.com/user-attachments/assets/ccde2e2b-4da4-487f-b6c1-8ed9a38928ef)
 
+### **5. Output Variables**
+Used to display resource details after applying Terraform.
+define outputs in output.tf
+
+```hcl
+output "public_ip" {
+  description = "Public IP of the instance"
+  value       = aws_instance.my_instance.public_ip
+}
+output "instance_id" {
+  description = "ID of the EC2 instance"
+  value       = aws_instance.my_instance.id
+}
+```
+![image](https://github.com/user-attachments/assets/842acd79-98ab-4387-aefb-f61862612172)
+
+apply terraform and view outputs
+
+```bash
+terraform init
+terraform apply
+```
+
+![image](https://github.com/user-attachments/assets/dd4a5fb2-c99c-4e5e-b850-c406aaf1a366)
+
 ---
 
 ## **5. Destroy the Instance (Clean Up)**
