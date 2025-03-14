@@ -37,6 +37,11 @@ This guide explains how to create an EC2 instance using Terraform with three con
 
   ![image](https://github.com/user-attachments/assets/ceb5acc6-f43b-44c6-8aab-c53d94157195)
 
+  and click on awscli.msi file and install and check aws cli is installed or not
+
+  ```bash
+  aws --version
+  ```
   ![image](https://github.com/user-attachments/assets/5000070c-12d4-4839-bac4-73be6d41b537)
 
 ## **2. Create Terraform Configuration Files**
