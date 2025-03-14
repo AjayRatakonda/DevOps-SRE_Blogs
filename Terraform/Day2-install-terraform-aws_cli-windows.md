@@ -8,7 +8,7 @@ This guide explains how to create an EC2 instance using Terraform with three con
   
   https://developer.hashicorp.com/terraform/install
 
-  ![image](https://github.com/user-attachments/assets/dd559dc2-c844-4e02-88a3-1a927b8e45be)
+  ![image](https://github.com/user-attachments/assets/d88574ea-b86c-47f3-9c0f-58ad430d6ce1)
 
 -  and extract zip file and move terraform.exe to c:\terraform like below screenshot
 
